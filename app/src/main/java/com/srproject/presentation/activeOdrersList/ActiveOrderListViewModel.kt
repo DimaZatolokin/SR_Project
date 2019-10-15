@@ -1,4 +1,4 @@
-package com.srproject.presentation.odrerList
+package com.srproject.presentation.activeOdrersList
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope

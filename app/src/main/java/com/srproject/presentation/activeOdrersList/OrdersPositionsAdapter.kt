@@ -1,4 +1,4 @@
-package com.srproject.presentation.odrerList
+package com.srproject.presentation.activeOdrersList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

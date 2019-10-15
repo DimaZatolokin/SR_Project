@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentOrderList"
-        android:name="com.srproject.presentation.odrerList.ActiveOrdersFragment"
+        android:name="com.srproject.presentation.activeOdrersList.ActiveOrdersFragment"
         android:label="@string/orders_title">
 
         <action

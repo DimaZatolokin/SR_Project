@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.srproject.presentation.odrerList.ActiveOrderListViewModel" />
+            type="com.srproject.presentation.activeOdrersList.ActiveOrderListViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

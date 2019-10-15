@@ -1,8 +1,7 @@
-package com.srproject.presentation.odrerList.mappers
+package com.srproject.domain.mappers
 
 import com.srproject.common.toReadableDate
 import com.srproject.data.models.Order
-import com.srproject.presentation.common.PresentationMapper
 import com.srproject.presentation.models.OrderUI
 
 class OrderPresentationMapper : PresentationMapper<Order, OrderUI> {

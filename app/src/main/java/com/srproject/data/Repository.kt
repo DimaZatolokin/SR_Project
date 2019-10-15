@@ -5,17 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.srproject.data.models.Order
 import com.srproject.data.models.OrderPosition
 import com.srproject.data.models.Product
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 class Repository private constructor(
     private val dbStorage: AppDataBase,
     private val preferences: PreferencesDataSource
 ) {
 
-    suspend fun getActiveOrders(coroutineScope: CoroutineScope): LiveData<List<Order>> {
+    suspend fun getActiveOrders(): LiveData<List<Order>> {
         val liveData = MutableLiveData<List<Order>>()
         val positions = arrayListOf<OrderPosition>()
         positions.add(OrderPosition(1, 1, 2, 1, "С молоком"))

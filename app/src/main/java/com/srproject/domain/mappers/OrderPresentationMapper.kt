@@ -14,6 +14,7 @@ class OrderPresentationMapper : PresentationMapper<Order, OrderUI> {
         model.done,
         model.active,
         model.calculatedPrice,
+        model.dateCreated.toReadableDate(),
         model.dueDate.toReadableDate(),
         model.comment,
         emptyList()

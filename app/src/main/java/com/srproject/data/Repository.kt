@@ -11,15 +11,19 @@ class Repository private constructor(
     private val preferences: PreferencesDataSource
 ) {
 
-    suspend fun getActiveOrders(): LiveData<List<Order>> {
-        val liveData = MutableLiveData<List<Order>>()
-        val positions = arrayListOf<OrderPosition>()
+    private val positions = arrayListOf<OrderPosition>()
+
+    init {
         positions.add(OrderPosition(1, 1, 2, 1, "С молоком"))
         positions.add(OrderPosition(2, 2, 3, 1, "С кофе"))
         positions.add(OrderPosition(3, 3, 1, 1, "без сахара"))
         positions.add(OrderPosition(4, 1, 2, 1, "С молоком"))
         positions.add(OrderPosition(5, 2, 3, 1, "С кофе"))
         positions.add(OrderPosition(6, 3, 1, 1, "без сахара"))
+    }
+
+    suspend fun getActiveOrders(): LiveData<List<Order>> {
+        val liveData = MutableLiveData<List<Order>>()
         val list = arrayListOf<Order>()
         list.add(
             Order(
@@ -28,9 +32,10 @@ class Repository private constructor(
                 positions,
                 559,
                 true,
-                false,
+                true,
                 true,
                 0,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -42,9 +47,10 @@ class Repository private constructor(
                 positions,
                 180,
                 true,
-                false,
                 true,
+                false,
                 180,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -55,10 +61,11 @@ class Repository private constructor(
                 "geuss_55",
                 positions,
                 880,
-                true,
+                false,
                 false,
                 true,
                 920,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -73,6 +80,7 @@ class Repository private constructor(
                 false,
                 true,
                 290,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -87,6 +95,7 @@ class Repository private constructor(
                 false,
                 true,
                 0,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -101,6 +110,7 @@ class Repository private constructor(
                 false,
                 true,
                 180,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -115,6 +125,7 @@ class Repository private constructor(
                 false,
                 true,
                 920,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -129,6 +140,7 @@ class Repository private constructor(
                 false,
                 true,
                 290,
+                System.currentTimeMillis() - 100000000,
                 System.currentTimeMillis(),
                 "The verrrrrrs"
             )
@@ -139,6 +151,30 @@ class Repository private constructor(
 
     suspend fun getProductById(id: Long): Product? {
         return Product(id, "Коробка конфет 12", 280)
+    }
+
+    suspend fun getOrderById(id: Long): Order? {
+        return Order(
+            15,
+            "Vasya Pupkin",
+            emptyList(),
+            255,
+            true,
+            false,
+            true,
+            245,
+            System.currentTimeMillis() - 100000000,
+            System.currentTimeMillis(),
+            "без сахара"
+        )
+    }
+
+    suspend fun getOrderPositionsByOrderId(id: Long): List<OrderPosition> {
+        val list = arrayListOf<OrderPosition>()
+        list.addAll(positions)
+        list.addAll(positions)
+        list.addAll(positions)
+        return list
     }
 
     companion object {

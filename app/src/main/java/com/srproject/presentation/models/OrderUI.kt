@@ -10,6 +10,7 @@ data class OrderUI(
     val done: Boolean,
     val active: Boolean,
     var calculatedPrice: Int,
+    val dateCreated: String,
     val dueDate: String,
     val comment: String,
     var positions: List<OrderPositionUI>

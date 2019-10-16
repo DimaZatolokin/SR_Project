@@ -8,7 +8,8 @@ import com.srproject.R
 import com.srproject.databinding.ItemOrderBinding
 import com.srproject.presentation.models.OrderUI
 
-class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.VH>() {
+class OrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
+    RecyclerView.Adapter<OrdersAdapter.VH>() {
 
     var items = emptyList<OrderUI>()
         set(value) {
@@ -38,6 +39,9 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.VH>() {
         fun bind(order: OrderUI) {
             binding.model = order
             binding.rvPositions.adapter = OrdersPositionsAdapter(order.positions)
+            binding.root.setOnClickListener {
+                orderClickListener.onOrderClicked(order.id)
+            }
         }
     }
 }

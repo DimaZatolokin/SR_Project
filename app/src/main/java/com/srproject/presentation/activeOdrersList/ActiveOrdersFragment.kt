@@ -3,6 +3,7 @@ package com.srproject.presentation.activeOdrersList
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.srproject.R
 import com.srproject.common.obtainViewModel
@@ -10,7 +11,8 @@ import com.srproject.databinding.FragmentActiveOrdersBinding
 import com.srproject.presentation.BaseFragment
 import kotlinx.android.synthetic.main.fragment_active_orders.*
 
-class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>() {
+class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
+    ActiveOrderListActionListener {
 
     override val contentLayoutId = R.layout.fragment_active_orders
 
@@ -20,6 +22,7 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>() {
 
     override fun setupViews() {
         setHasOptionsMenu(true)
+        rvActiveOrders.addItemDecoration(OrdersItemDecorator())
     }
 
     override fun setupBinding(binding: FragmentActiveOrdersBinding) {
@@ -27,7 +30,9 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>() {
     }
 
     override fun setupViewModel() {
-        rvActiveOrders.addItemDecoration(OrdersItemDecorator())
+        viewModel.navigateToDetailsEvent.observe(this, Observer {
+            findNavController(this).navigate(ActiveOrdersFragmentDirections.actionToOrderDetails(it))
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -42,5 +47,9 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onOrderClicked(id: Long) {
+
     }
 }

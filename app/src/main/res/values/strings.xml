@@ -3,4 +3,19 @@
     <string name="menu_settings">Настройки</string>
     <string name="orders_title">Заказы</string>
     <string name="order_details_title">Детали заказа</string>
+    <string name="text_consumer">Заказчик:</string>
+    <string name="text_due_date">Отдать:</string>
+    <string name="text_real_price">Установленая цена:</string>
+    <string name="text_default_price">Рекомендуемая цена:</string>
+    <string name="text_done">Готовность заказа:</string>
+    <string name="text_status">Заказ отдан:</string>
+    <string name="order_done">Готов</string>
+    <string name="order_in_progress">В процессе</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="price">%d грн</string>
+    <string name="text_paid">Оплачен:</string>
+    <string name="items">... %s шт</string>
+    <string name="text_date_created">Создан:</string>
+    <string name="text_comment">Комментарий:</string>
 </resources>

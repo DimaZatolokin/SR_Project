@@ -20,7 +20,12 @@
 
         <action
             android:id="@+id/actionToOrderDetails"
-            app:destination="@id/fragmentOrderDetails" />
+            app:destination="@id/fragmentOrderDetails">
+
+            <argument
+                android:name="id"
+                app:argType="long" />
+        </action>
     </fragment>
 
     <fragment
@@ -42,6 +47,11 @@
     <fragment
         android:id="@+id/fragmentOrderDetails"
         android:name="com.srproject.presentation.orderDetails.OrderDetailsFragment"
-        android:label="@string/order_details_title" />
+        android:label="@string/order_details_title">
+
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

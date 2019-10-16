@@ -14,6 +14,7 @@ data class Order(
     var done: Boolean = false,
     var active: Boolean = false,
     var calculatedPrice: Int = 0,
+    var dateCreated: Long = 0,
     var dueDate: Long = 0,
     var comment: String = ""
 )

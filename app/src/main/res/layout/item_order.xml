@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,11 +11,11 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.srproject.common.ClickInterceptableConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:elevation="5dp"
-        android:background="#EEEEEE">
+        android:background="#EEEEEE"
+        android:elevation="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPositions"
@@ -102,5 +103,5 @@
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.srproject.common.ClickInterceptableConstraintLayout>
 </layout>

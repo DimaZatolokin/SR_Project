@@ -8,30 +8,29 @@ import com.srproject.data.Repository
 import com.srproject.domain.usecases.GetOrderDetailsUseCase
 import com.srproject.presentation.BaseViewModel
 
-class OrderDetailsViewModel(application: Application, repository: Repository) :
+open class OrderDetailsViewModel(application: Application, repository: Repository) :
     BaseViewModel(application, repository) {
 
     private val useCase = GetOrderDetailsUseCase(viewModelScope, repository)
     val adapter = OrderDetailsPositionsAdapter()
-
     val consumer = ObservableField<String>()
     val dueDate = ObservableField<String>()
     val dateCreated = ObservableField<String>()
     val comment = ObservableField<String>()
-    val realPrice = ObservableField<Int>()
-    val calculatedPrice = ObservableField<Int>()
+    val realPrice = ObservableField<String>()
+    val calculatedPrice = ObservableField<String>()
     val done = ObservableBoolean()
     val active = ObservableBoolean()
     val paid = ObservableBoolean()
 
-    fun start(id: Long) {
+    open fun start(id: Long) {
         useCase.obtainOrderDetails(id) {
             it?.run {
                 this@OrderDetailsViewModel.consumer.set(consumer)
                 this@OrderDetailsViewModel.dueDate.set(dueDate)
                 this@OrderDetailsViewModel.dateCreated.set(dateCreated)
-                this@OrderDetailsViewModel.realPrice.set(price)
-                this@OrderDetailsViewModel.calculatedPrice.set(calculatedPrice)
+                this@OrderDetailsViewModel.realPrice.set(price.toString())
+                this@OrderDetailsViewModel.calculatedPrice.set(calculatedPrice.toString())
                 this@OrderDetailsViewModel.done.set(done)
                 this@OrderDetailsViewModel.active.set(active)
                 this@OrderDetailsViewModel.paid.set(paid)

@@ -1,5 +1,6 @@
 package com.srproject.presentation.orderDetails
 
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.srproject.R
 import com.srproject.common.obtainViewModel
@@ -7,7 +8,8 @@ import com.srproject.databinding.FragmentOrderDetailsBinding
 import com.srproject.presentation.BaseFragment
 import com.srproject.presentation.activeOdrersList.OrdersItemDecorator
 
-class OrderDetailsFragment : BaseFragment<FragmentOrderDetailsBinding>() {
+class OrderDetailsFragment : BaseFragment<FragmentOrderDetailsBinding>(),
+    OrderDetailsActionListener {
 
     override val contentLayoutId = R.layout.fragment_order_details
 
@@ -18,10 +20,15 @@ class OrderDetailsFragment : BaseFragment<FragmentOrderDetailsBinding>() {
 
     override fun setupBinding(binding: FragmentOrderDetailsBinding) {
         binding.viewModel = viewModel
+        binding.listener = this
         binding.rvPositions.addItemDecoration(OrdersItemDecorator())
     }
 
     override fun setupViewModel() {
         viewModel.start(args.id)
+    }
+
+    override fun onEditButtonClick() {
+        findNavController().navigate(OrderDetailsFragmentDirections.actionToOrderEdit(args.id))
     }
 }

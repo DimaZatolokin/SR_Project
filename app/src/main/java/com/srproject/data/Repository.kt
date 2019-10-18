@@ -5,11 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import com.srproject.data.models.Order
 import com.srproject.data.models.OrderPosition
 import com.srproject.data.models.Product
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Repository private constructor(
     private val dbStorage: AppDataBase,
     private val preferences: PreferencesDataSource
-) {
+) : CoroutineScope {
+
+    override val coroutineContext = Dispatchers.Default
 
     private val positions = arrayListOf<OrderPosition>()
 
@@ -173,8 +178,13 @@ class Repository private constructor(
         val list = arrayListOf<OrderPosition>()
         list.addAll(positions)
         list.addAll(positions)
-        list.addAll(positions)
         return list
+    }
+
+    fun updateOrder(order: Order) {
+        launch {
+            //TODO
+        }
     }
 
     companion object {

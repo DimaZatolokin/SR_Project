@@ -7,11 +7,11 @@
 
         <variable
             name="listener"
-            type="com.srproject.presentation.orderDetails.OrderDetailsActionListener" />
+            type="com.srproject.presentation.orderEdit.OrderEditActionListener" />
 
         <variable
             name="viewModel"
-            type="com.srproject.presentation.orderDetails.OrderDetailsViewModel" />
+            type="com.srproject.presentation.orderEdit.OrderEditViewModel" />
 
     </data>
 
@@ -39,15 +39,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvConsumer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{viewModel.consumer}"
+                    android:text="@={viewModel.consumer}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvConsumerText"
                     app:layout_constraintStart_toEndOf="@id/tvConsumerText"
                     tools:text="$ffgg_rttt34" />
@@ -63,15 +63,17 @@
                     app:layout_constraintStart_toStartOf="@id/tvConsumerText"
                     app:layout_constraintTop_toBottomOf="@id/tvConsumerText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvDateCreate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onDateCreatedClick()}"
                     android:text="@{viewModel.dateCreated}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvDateCreateText"
                     app:layout_constraintStart_toEndOf="@id/tvDateCreateText"
                     tools:text="10 декабря 2019" />
@@ -87,15 +89,17 @@
                     app:layout_constraintStart_toStartOf="@id/tvDateCreateText"
                     app:layout_constraintTop_toBottomOf="@id/tvDateCreateText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onDueDateClick()}"
                     android:text="@{viewModel.dueDate}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvDateText"
                     app:layout_constraintStart_toEndOf="@id/tvDateText"
                     tools:text="24 декабря 2019" />
@@ -111,18 +115,19 @@
                     app:layout_constraintStart_toStartOf="@id/tvDateText"
                     app:layout_constraintTop_toBottomOf="@id/tvDateText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvRealPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{@string/price(viewModel.realPrice)}"
+                    android:inputType="number"
+                    android:text="@={viewModel.realPrice}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvRealPriceText"
                     app:layout_constraintStart_toEndOf="@id/tvRealPriceText"
-                    tools:text="825 грн" />
+                    tools:text="825" />
 
                 <TextView
                     android:id="@+id/tvDefaultPriceText"
@@ -143,7 +148,7 @@
                     android:text="@{@string/price(viewModel.calculatedPrice)}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvDefaultPriceText"
                     app:layout_constraintStart_toEndOf="@id/tvDefaultPriceText"
                     tools:text="800 грн" />
@@ -159,14 +164,16 @@
                     app:layout_constraintStart_toStartOf="@id/tvDefaultPriceText"
                     app:layout_constraintTop_toBottomOf="@id/tvDefaultPriceText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvPaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onPaidClick()}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvPaidText"
                     app:layout_constraintStart_toEndOf="@id/tvPaidText"
                     app:paid="@{viewModel.paid}"
@@ -183,14 +190,16 @@
                     app:layout_constraintStart_toStartOf="@id/tvPaidText"
                     app:layout_constraintTop_toBottomOf="@id/tvPaidText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvDone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onDoneClick()}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:done="@{viewModel.done}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvDoneText"
                     app:layout_constraintStart_toEndOf="@id/tvDoneText"
@@ -207,14 +216,16 @@
                     app:layout_constraintStart_toStartOf="@id/tvDoneText"
                     app:layout_constraintTop_toBottomOf="@id/tvDoneText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onGivenClick()}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvStatusText"
                     app:layout_constraintStart_toEndOf="@id/tvStatusText"
                     app:status="@{viewModel.active}"
@@ -231,15 +242,16 @@
                     app:layout_constraintStart_toStartOf="@id/tvStatusText"
                     app:layout_constraintTop_toBottomOf="@id/tvStatusText" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvComment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.comment}"
+                    android:text="@={viewModel.comment}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@id/tvCommentText"
                     app:layout_constraintTop_toBottomOf="@id/tvCommentText"
                     tools:text="Отдать на пушкинской возле турникета. Добавить боьлше молочного." />
@@ -262,17 +274,30 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/viewSeparator" />
 
+                <Button
+                    android:id="@+id/btnAddPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_add_position_button"
+                    android:drawableLeft="@drawable/ic_add_black"
+                    android:paddingEnd="5dp"
+                    android:text="@string/add_position"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvPositions" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fbEdit"
+            android:id="@+id/fbSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:backgroundTint="@color/colorBlueLight"
-            android:onClick="@{()->listener.onEditButtonClick()}"
-            android:src="@drawable/ic_edit_white"
+            android:onClick="@{()->listener.onSaveClick()}"
+            android:src="@drawable/ic_save"
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

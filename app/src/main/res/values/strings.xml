@@ -13,9 +13,13 @@
     <string name="order_in_progress">В процессе</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-    <string name="price">%d грн</string>
+    <string name="price">%s грн</string>
     <string name="text_paid">Оплачен:</string>
     <string name="items">... %s шт</string>
     <string name="text_date_created">Создан:</string>
     <string name="text_comment">Комментарий:</string>
+    <string name="order_edit_title">Изменение заказа</string>
+    <string name="dialog_title">Предупреждение</string>
+    <string name="save_changes">Сохранить изменения?</string>
+    <string name="add_position">Добавить</string>
 </resources>

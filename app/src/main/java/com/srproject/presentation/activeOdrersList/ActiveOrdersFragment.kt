@@ -4,7 +4,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.srproject.R
 import com.srproject.common.obtainViewModel
 import com.srproject.databinding.FragmentActiveOrdersBinding
@@ -27,11 +27,12 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
 
     override fun setupBinding(binding: FragmentActiveOrdersBinding) {
         binding.viewModel = this.viewModel
+        binding.listener = this
     }
 
     override fun setupViewModel() {
         viewModel.navigateToDetailsEvent.observe(this, Observer {
-            findNavController(this).navigate(ActiveOrdersFragmentDirections.actionToOrderDetails(it))
+            findNavController().navigate(ActiveOrdersFragmentDirections.actionToOrderDetails(it))
         })
     }
 
@@ -43,13 +44,13 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_settings -> {
-                findNavController(this).navigate(R.id.actionToSettings)
+                findNavController().navigate(ActiveOrdersFragmentDirections.actionToSettings())
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onOrderClicked(id: Long) {
-
+    override fun onAddOrderClick() {
+        findNavController().navigate(ActiveOrdersFragmentDirections.actionToOrderCreate())
     }
 }

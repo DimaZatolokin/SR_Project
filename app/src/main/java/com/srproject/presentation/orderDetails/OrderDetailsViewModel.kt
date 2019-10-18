@@ -1,29 +1,18 @@
 package com.srproject.presentation.orderDetails
 
 import android.app.Application
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.data.Repository
 import com.srproject.domain.usecases.GetOrderDetailsUseCase
-import com.srproject.presentation.BaseViewModel
 
-open class OrderDetailsViewModel(application: Application, repository: Repository) :
-    BaseViewModel(application, repository) {
+class OrderDetailsViewModel(application: Application, repository: Repository) :
+    BaseOrderInfoViewModel(application, repository) {
 
     private val useCase = GetOrderDetailsUseCase(viewModelScope, repository)
     val adapter = OrderDetailsPositionsAdapter()
-    val consumer = ObservableField<String>()
-    val dueDate = ObservableField<String>()
-    val dateCreated = ObservableField<String>()
-    val comment = ObservableField<String>()
-    val realPrice = ObservableField<String>()
-    val calculatedPrice = ObservableField<String>()
-    val done = ObservableBoolean()
-    val active = ObservableBoolean()
-    val paid = ObservableBoolean()
 
-    open fun start(id: Long) {
+    fun start(id: Long) {
         useCase.obtainOrderDetails(id) {
             it?.run {
                 this@OrderDetailsViewModel.consumer.set(consumer)

@@ -17,6 +17,7 @@ class Repository private constructor(
     override val coroutineContext = Dispatchers.Default
 
     private val positions = arrayListOf<OrderPosition>()
+    private val products = arrayListOf<Product>()
 
     init {
         positions.add(OrderPosition(1, 1, 2, 1, "С молоком"))
@@ -25,6 +26,14 @@ class Repository private constructor(
         positions.add(OrderPosition(4, 1, 2, 1, "С молоком"))
         positions.add(OrderPosition(5, 2, 3, 1, "С кофе"))
         positions.add(OrderPosition(6, 3, 1, 1, "без сахара"))
+
+        products.add(Product(1, "Коробка конфет 12", 240))
+        products.add(Product(2, "Коробка конфет 16", 290))
+        products.add(Product(3, "Коробка шоколадок", 300))
+        products.add(Product(4, "Шоколадка белая", 130))
+        products.add(Product(5, "Шоколадка черная", 130))
+        products.add(Product(6, "Шоколадка молочная", 140))
+        products.add(Product(7, "Шоколадка руби", 150))
     }
 
     suspend fun getActiveOrders(): LiveData<List<Order>> {
@@ -185,6 +194,10 @@ class Repository private constructor(
         launch {
             //TODO
         }
+    }
+
+    suspend fun getProducts(): List<Product> {
+        return products
     }
 
     companion object {

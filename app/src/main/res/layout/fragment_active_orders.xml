@@ -4,11 +4,15 @@
     <data>
 
         <variable
+            name="listener"
+            type="com.srproject.presentation.activeOdrersList.ActiveOrderListActionListener" />
+
+        <variable
             name="viewModel"
             type="com.srproject.presentation.activeOdrersList.ActiveOrderListViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -20,5 +24,17 @@
             android:adapter="@{viewModel.adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorBlueLight"
+            android:onClick="@{()->listener.onAddOrderClick()}"
+            android:src="@drawable/ic_add_white"
+            app:borderWidth="0dp" />
+
+    </FrameLayout>
 </layout>

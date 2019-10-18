@@ -22,4 +22,9 @@
     <string name="dialog_title">Предупреждение</string>
     <string name="save_changes">Сохранить изменения?</string>
     <string name="add_position">Добавить</string>
+    <string name="order_create_title">Создание заказа</string>
+    <string name="select_date">Выбирете дату</string>
+    <string name="input_consumer">Введите имя заказчика</string>
+    <string name="input_comment">Добавте комментарий к заказу</string>
+    <string name="positions_list">Список позиций:</string>
 </resources>

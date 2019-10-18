@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.srproject.presentation.createOrder.OrderCreateActionListener" />
+
+        <variable
+            name="viewModel"
+            type="com.srproject.presentation.createOrder.OrderCreateViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvConsumerText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_consumer"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/tvConsumer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:hint="@string/input_consumer"
+                    android:maxLines="1"
+                    android:text="@={viewModel.consumer}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvConsumerText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvConsumerText" />
+
+                <TextView
+                    android:id="@+id/tvDateCreateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_date_created"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvConsumerText"
+                    app:layout_constraintTop_toBottomOf="@id/tvConsumerText" />
+
+                <EditText
+                    android:id="@+id/tvDateCreate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onDateCreatedClick()}"
+                    android:text="@{viewModel.dateCreated}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvDateCreateText"
+                    app:layout_constraintStart_toEndOf="@id/tvDateCreateText"
+                    tools:text="12 ноября 2019" />
+
+                <TextView
+                    android:id="@+id/tvDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_due_date"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvDateCreateText"
+                    app:layout_constraintTop_toBottomOf="@id/tvDateCreateText" />
+
+                <EditText
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:hint="@string/select_date"
+                    android:onClick="@{()->listener.onDueDateClick()}"
+                    android:text="@{viewModel.dueDate}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvDateText"
+                    app:layout_constraintStart_toEndOf="@id/tvDateText" />
+
+                <TextView
+                    android:id="@+id/tvRealPriceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_real_price"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvDateText"
+                    app:layout_constraintTop_toBottomOf="@id/tvDateText" />
+
+                <EditText
+                    android:id="@+id/tvRealPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:inputType="number"
+                    android:text="@={viewModel.realPrice}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvRealPriceText"
+                    app:layout_constraintStart_toEndOf="@id/tvRealPriceText"
+                    tools:text="0" />
+
+                <TextView
+                    android:id="@+id/tvDefaultPriceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_default_price"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvRealPriceText"
+                    app:layout_constraintTop_toBottomOf="@id/tvRealPriceText" />
+
+                <TextView
+                    android:id="@+id/tvDefaultPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{@string/price(viewModel.calculatedPrice)}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvDefaultPriceText"
+                    app:layout_constraintStart_toEndOf="@id/tvDefaultPriceText"
+                    tools:text="0 грн" />
+
+                <TextView
+                    android:id="@+id/tvPaidText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_paid"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvDefaultPriceText"
+                    app:layout_constraintTop_toBottomOf="@id/tvDefaultPriceText" />
+
+                <EditText
+                    android:id="@+id/tvPaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onPaidClick()}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvPaidText"
+                    app:layout_constraintStart_toEndOf="@id/tvPaidText"
+                    app:paid="@{viewModel.paid}"
+                    tools:text="Да" />
+
+                <TextView
+                    android:id="@+id/tvDoneText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_done"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvPaidText"
+                    app:layout_constraintTop_toBottomOf="@id/tvPaidText" />
+
+                <EditText
+                    android:id="@+id/tvDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onDoneClick()}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:done="@{viewModel.done}"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvDoneText"
+                    app:layout_constraintStart_toEndOf="@id/tvDoneText"
+                    tools:text="Готов" />
+
+                <TextView
+                    android:id="@+id/tvStatusText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_status"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvDoneText"
+                    app:layout_constraintTop_toBottomOf="@id/tvDoneText" />
+
+                <EditText
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:focusable="false"
+                    android:onClick="@{()->listener.onGivenClick()}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvStatusText"
+                    app:layout_constraintStart_toEndOf="@id/tvStatusText"
+                    app:status="@{viewModel.active}"
+                    tools:text="Нет" />
+
+                <TextView
+                    android:id="@+id/tvCommentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/text_comment"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvStatusText"
+                    app:layout_constraintTop_toBottomOf="@id/tvStatusText" />
+
+                <EditText
+                    android:id="@+id/tvComment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_comment"
+                    android:text="@={viewModel.comment}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@id/tvCommentText"
+                    app:layout_constraintTop_toBottomOf="@id/tvCommentText" />
+
+                <View
+                    android:id="@+id/viewSeparator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toBottomOf="@id/tvComment" />
+
+                <TextView
+                    android:id="@+id/tvPositionsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/positions_list"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvConsumerText"
+                    app:layout_constraintTop_toBottomOf="@id/viewSeparator" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPositions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:adapter="@{viewModel.adapter}"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tvPositionsText" />
+
+                <Button
+                    android:id="@+id/btnAddPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_add_position_button"
+                    android:drawableLeft="@drawable/ic_add_black"
+                    android:onClick="@{()->listener.onAddPositionClick()}"
+                    android:paddingEnd="5dp"
+                    android:text="@string/add_position"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvPositions" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/colorBlueLight"
+            android:onClick="@{()->listener.onSaveClick()}"
+            android:src="@drawable/ic_save"
+            app:borderWidth="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

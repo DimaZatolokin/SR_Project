@@ -2,22 +2,39 @@ package com.srproject.presentation.orderEdit
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
+import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.common.SingleLiveEvent
 import com.srproject.common.toReadableDate
 import com.srproject.data.Repository
+import com.srproject.domain.usecases.GetOrderDetailsUseCase
 import com.srproject.domain.usecases.UpdateOrderUseCase
 import com.srproject.presentation.models.OrderUI
-import com.srproject.presentation.orderDetails.OrderDetailsViewModel
+import com.srproject.presentation.orderDetails.OrderDetailsPositionsAdapter
 
 class OrderEditViewModel(application: Application, repository: Repository) :
-    OrderDetailsViewModel(application, repository) {
+    BaseOrderInfoViewModel(application, repository) {
 
+    private val getOrderUseCase = GetOrderDetailsUseCase(viewModelScope, repository)
+    val adapter = OrderDetailsPositionsAdapter() //TODO change on own adapter
     private val updateOrderUseCase = UpdateOrderUseCase(viewModelScope, repository)
     private var id = -1L
     val navigateBackCommand = SingleLiveEvent<Unit>()
 
-    override fun start(id: Long) {
-        super.start(id)
+    fun start(id: Long) {
+        getOrderUseCase.obtainOrderDetails(id) {
+            it?.run {
+                this@OrderEditViewModel.consumer.set(consumer)
+                this@OrderEditViewModel.dueDate.set(dueDate)
+                this@OrderEditViewModel.dateCreated.set(dateCreated)
+                this@OrderEditViewModel.realPrice.set(price.toString())
+                this@OrderEditViewModel.calculatedPrice.set(calculatedPrice.toString())
+                this@OrderEditViewModel.done.set(done)
+                this@OrderEditViewModel.active.set(active)
+                this@OrderEditViewModel.paid.set(paid)
+                this@OrderEditViewModel.comment.set(comment)
+                adapter.items = this.positions
+            }
+        }
         this.id = id
     }
 

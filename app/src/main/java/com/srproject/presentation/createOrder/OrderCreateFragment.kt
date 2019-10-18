@@ -1,38 +1,31 @@
-package com.srproject.presentation.orderEdit
+package com.srproject.presentation.createOrder
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.srproject.R
 import com.srproject.common.OnBackPressedListener
 import com.srproject.common.obtainViewModel
 import com.srproject.common.toTimeStamp
-import com.srproject.databinding.FragmentOrderEditBinding
+import com.srproject.databinding.FragmentOrderCreateBinding
 import com.srproject.presentation.BaseFragment
 import java.util.*
 
-class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditActionListener,
-    OnBackPressedListener {
+class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPressedListener,
+    OrderCreateActionListener {
 
-    private val viewModel: OrderEditViewModel by lazy {
-        obtainViewModel(OrderEditViewModel::class.java)
+    private val viewModel: OrderCreateViewModel by lazy {
+        obtainViewModel(OrderCreateViewModel::class.java)
     }
-    private val args: OrderEditFragmentArgs by navArgs()
+    override val contentLayoutId = R.layout.fragment_order_create
 
-    override val contentLayoutId = R.layout.fragment_order_edit
-
-    override fun setupBinding(binding: FragmentOrderEditBinding) {
+    override fun setupBinding(binding: FragmentOrderCreateBinding) {
         binding.viewModel = viewModel
         binding.listener = this
     }
 
-    override fun setupViewModel() {
-        viewModel.start(args.id)
-        viewModel.navigateBackCommand.observe(this, Observer {
-            findNavController().popBackStack()
-        })
+    override fun onBackPressed(): Boolean {
+
+        return true
     }
 
     override fun onSaveClick() {
@@ -59,7 +52,8 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
 
     override fun onDueDateClick() {
         activity?.run {
-            val currentDueDate = viewModel.dueDate.get()!!.toTimeStamp()
+            val inputDate = viewModel.dueDate.get()
+            val currentDueDate = inputDate?.toTimeStamp() ?: System.currentTimeMillis()
             val calendar = Calendar.getInstance().apply {
                 timeInMillis = currentDueDate
             }
@@ -90,16 +84,6 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
 
     override fun onAddPositionClick() {
         viewModel.onAddPositionClicked()
-    }
-
-    override fun onBackPressed(): Boolean {
-        showQuestionDialog(message = getString(R.string.save_changes),
-            actionAccept = {
-                viewModel.onSaveClicked()
-            }, actionDecline = {
-                findNavController().popBackStack()
-            })
-        return false
     }
 
     private inner class DateCreatedSetListener : DatePickerDialog.OnDateSetListener {

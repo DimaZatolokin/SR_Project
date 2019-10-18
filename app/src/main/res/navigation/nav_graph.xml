@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentOrderList">
+    app:startDestination="@id/fragmentActiveOrders">
 
     <fragment
-        android:id="@+id/fragmentOrderList"
+        android:id="@+id/fragmentActiveOrders"
         android:name="com.srproject.presentation.activeOdrersList.ActiveOrdersFragment"
         android:label="@string/orders_title">
 
@@ -26,6 +26,10 @@
                 android:name="id"
                 app:argType="long" />
         </action>
+
+        <action
+            android:id="@+id/actionToOrderCreate"
+            app:destination="@id/fragmentOrderCreate" />
     </fragment>
 
     <fragment
@@ -35,12 +39,12 @@
 
         <action
             android:id="@+id/actionToOrderList"
-            app:destination="@id/fragmentOrderList"
+            app:destination="@id/fragmentActiveOrders"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/fragmentOrderList"
+            app:popUpTo="@id/fragmentActiveOrders"
             app:popUpToInclusive="true" />
     </fragment>
 
@@ -72,5 +76,10 @@
             android:name="id"
             app:argType="long" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragmentOrderCreate"
+        android:name="com.srproject.presentation.createOrder.OrderCreateFragment"
+        android:label="@string/order_create_title" />
 
 </navigation>

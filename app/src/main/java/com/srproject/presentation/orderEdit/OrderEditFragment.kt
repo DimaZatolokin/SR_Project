@@ -2,6 +2,7 @@ package com.srproject.presentation.orderEdit
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,10 +30,27 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
     }
 
     override fun setupViewModel() {
-        viewModel.start(args.id)
-        viewModel.navigateBackCommand.observe(this, Observer {
-            findNavController().popBackStack()
-        })
+        viewModel.apply {
+            start(args.id)
+            navigateBackCommand.observe(this@OrderEditFragment, Observer {
+                findNavController().popBackStack()
+            })
+            showExitDialogCommand.observe(this@OrderEditFragment, androidx.lifecycle.Observer {
+                showQuestionDialog(message = getString(R.string.save_changes),
+                    actionAccept = {
+                        viewModel.onSaveClicked()
+                    }, actionDecline = {
+                        findNavController().popBackStack()
+                    })
+            })
+            showErrorCommand.observe(this@OrderEditFragment, Observer {
+                val message = when(it) {
+                    Errors.CONSUMER -> getString(R.string.error_empty_consumer)
+                    Errors.POSITIONS -> getString(R.string.error_empty_positions)
+                }
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            })
+        }
     }
 
     override fun onSaveClick() {
@@ -93,12 +111,7 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
     }
 
     override fun onBackPressed(): Boolean {
-        showQuestionDialog(message = getString(R.string.save_changes),
-            actionAccept = {
-                viewModel.onSaveClicked()
-            }, actionDecline = {
-                findNavController().popBackStack()
-            })
+        viewModel.backPressed()
         return false
     }
 

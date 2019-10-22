@@ -22,7 +22,11 @@ class OrderCreatePositionsAdapter(private val updatePriceListener: UpdatePriceLi
             notifyDataSetChanged()
         }
 
-    val items: ArrayList<OrderPositionUI> = arrayListOf()
+    var items: ArrayList<OrderPositionUI> = arrayListOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     fun getTotalPrice(): Int {
         return items.sumBy { it.amount * it.product.price }

@@ -1,24 +1,32 @@
 package com.srproject.presentation.orderEdit
 
 import android.app.Application
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.viewModelScope
 import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.common.SingleLiveEvent
 import com.srproject.common.toReadableDate
 import com.srproject.data.Repository
 import com.srproject.domain.usecases.GetOrderDetailsUseCase
+import com.srproject.domain.usecases.GetProductsUseCase
 import com.srproject.domain.usecases.UpdateOrderUseCase
+import com.srproject.presentation.createOrder.OrderCreatePositionsAdapter
+import com.srproject.presentation.createOrder.UpdatePriceListener
+import com.srproject.presentation.models.OrderPositionUI
 import com.srproject.presentation.models.OrderUI
-import com.srproject.presentation.orderDetails.OrderDetailsPositionsAdapter
 
 class OrderEditViewModel(application: Application, repository: Repository) :
-    BaseOrderInfoViewModel(application, repository) {
+    BaseOrderInfoViewModel(application, repository), UpdatePriceListener {
 
     private val getOrderUseCase = GetOrderDetailsUseCase(viewModelScope, repository)
-    val adapter = OrderDetailsPositionsAdapter() //TODO change on own adapter
+    val adapter = OrderCreatePositionsAdapter(this)
     private val updateOrderUseCase = UpdateOrderUseCase(viewModelScope, repository)
+    private val getProductsUseCase = GetProductsUseCase(viewModelScope, repository)
     private var id = -1L
     val navigateBackCommand = SingleLiveEvent<Unit>()
+    val isAddPositionButtonEnabled = ObservableBoolean()
+    val showErrorCommand = SingleLiveEvent<Errors>()
+    val showExitDialogCommand = SingleLiveEvent<Unit>()
 
     fun start(id: Long) {
         getOrderUseCase.obtainOrderDetails(id) {
@@ -32,8 +40,12 @@ class OrderEditViewModel(application: Application, repository: Repository) :
                 this@OrderEditViewModel.active.set(active)
                 this@OrderEditViewModel.paid.set(paid)
                 this@OrderEditViewModel.comment.set(comment)
-                adapter.items = this.positions
+                adapter.items = this.positions as ArrayList<OrderPositionUI>
             }
+        }
+        getProductsUseCase.obtainProducts { products ->
+            adapter.products = products
+            isAddPositionButtonEnabled.set(products.isNotEmpty())
         }
         this.id = id
     }
@@ -59,7 +71,16 @@ class OrderEditViewModel(application: Application, repository: Repository) :
     }
 
     private fun areFieldsValid(): Boolean {
-        return !consumer.get().isNullOrBlank()
+        if (consumer.get().isNullOrBlank()) {
+            showErrorCommand.postValue(Errors.CONSUMER)
+            return false
+        }
+
+        if (adapter.items.none { it.amount > 0 }) {
+            showErrorCommand.postValue(Errors.POSITIONS)
+            return false
+        }
+        return true
     }
 
     fun setDateCreated(timeInMillis: Long) {
@@ -83,6 +104,20 @@ class OrderEditViewModel(application: Application, repository: Repository) :
     }
 
     fun onAddPositionClicked() {
-        //TODO
+        adapter.createNewItem()
+    }
+
+    override fun onUpdatePrice() {
+        calculatedPrice.set(adapter.getTotalPrice().toString())
+    }
+
+    fun backPressed() {
+        if (adapter.products.isNotEmpty()) {
+            showExitDialogCommand.call()
+        } else {
+            navigateBackCommand.call()
+        }
     }
 }
+
+enum class Errors { CONSUMER, POSITIONS }

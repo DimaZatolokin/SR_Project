@@ -164,7 +164,7 @@ class Repository private constructor(
     }
 
     suspend fun getProductById(id: Long): Product? {
-        return Product(id, "Коробка конфет 12", 280)
+        return Product(id, "Коробка конфет 16", 280)
     }
 
     suspend fun getOrderById(id: Long): Order? {

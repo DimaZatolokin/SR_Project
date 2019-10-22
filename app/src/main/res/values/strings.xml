@@ -27,4 +27,7 @@
     <string name="input_consumer">Введите имя заказчика</string>
     <string name="input_comment">Добавте комментарий к заказу</string>
     <string name="positions_list">Список позиций:</string>
+    <string name="error_empty_consumer">Заплните поле Заказчик</string>
+    <string name="error_empty_due_date">Выберите требуемую дату заказа</string>
+    <string name="error_empty_positions">Выбирете хотя бы одну позицию для заказа</string>
 </resources>

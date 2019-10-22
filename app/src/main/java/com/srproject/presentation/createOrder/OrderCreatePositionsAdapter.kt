@@ -29,8 +29,10 @@ class OrderCreatePositionsAdapter(private val updatePriceListener: UpdatePriceLi
     }
 
     fun createNewItem() {
-        items.add(OrderPositionUI(-1, products.first(), 0, -1))
-        notifyDataSetChanged()
+        if (products.isNotEmpty()) {
+            items.add(OrderPositionUI(-1, products.first(), 0, -1))
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

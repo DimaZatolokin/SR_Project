@@ -2,6 +2,7 @@ package com.srproject.presentation.createOrder
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.srproject.R
 import com.srproject.common.OnBackPressedListener
@@ -25,15 +26,33 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
     }
 
     override fun setupViewModel() {
-        viewModel.start()
-        viewModel.navigateBackCommand.observe(this, androidx.lifecycle.Observer {
-            findNavController().popBackStack()
-        })
+        viewModel.apply {
+            start()
+            navigateBackCommand.observe(this@OrderCreateFragment, androidx.lifecycle.Observer {
+                findNavController().popBackStack()
+            })
+            showExitDialogCommand.observe(this@OrderCreateFragment, androidx.lifecycle.Observer {
+                showQuestionDialog(message = getString(R.string.save_changes),
+                    actionAccept = {
+                        viewModel.onSaveClicked()
+                    }, actionDecline = {
+                        findNavController().popBackStack()
+                    })
+            })
+            showErrorCommand.observe(this@OrderCreateFragment, androidx.lifecycle.Observer {
+                val message = when(it) {
+                    Errors.CONSUMER -> getString(R.string.error_empty_consumer)
+                    Errors.DUE_DATE -> getString(R.string.error_empty_due_date)
+                    Errors.POSITIONS -> getString(R.string.error_empty_positions)
+                }
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            })
+        }
     }
 
     override fun onBackPressed(): Boolean {
-
-        return true
+        viewModel.backPressed()
+        return false
     }
 
     override fun onSaveClick() {

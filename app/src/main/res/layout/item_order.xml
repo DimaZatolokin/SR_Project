@@ -14,7 +14,7 @@
     <com.srproject.common.ClickInterceptableConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#EEEEEE"
+        android:background="@color/colorLightGray"
         android:elevation="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -29,6 +29,13 @@
             app:layout_constraintEnd_toStartOf="@id/viewSeparator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/main_list_positions_bg"
+            app:layout_constraintEnd_toEndOf="@id/rvPositions"
+            app:layout_constraintStart_toStartOf="@id/rvPositions" />
 
         <View
             android:id="@+id/viewSeparator"
@@ -92,16 +99,6 @@
             app:layout_constraintStart_toStartOf="@id/tvPrice"
             app:layout_constraintTop_toBottomOf="@id/tvPrice"
             tools:text="24 октября 2019" />
-
-        <!-- <View
-             android:layout_width="0dp"
-             android:layout_height="1dp"
-             android:layout_marginStart="8dp"
-             android:layout_marginEnd="8dp"
-             android:background="@color/colorPrimary"
-             app:layout_constraintBottom_toBottomOf="parent"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent" />-->
 
     </com.srproject.common.ClickInterceptableConstraintLayout>
 </layout>

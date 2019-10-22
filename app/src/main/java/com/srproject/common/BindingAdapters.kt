@@ -1,5 +1,8 @@
 package com.srproject.common
 
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.srproject.R
@@ -65,4 +68,20 @@ fun TextView.setPaid(paid: Boolean) {
             null
         )
     }
+}
+
+@BindingAdapter("selectedPositionItem")
+fun Spinner.setSelectedPositionItem(item: String) {
+    val position = (adapter as ArrayAdapter<String>).getPosition(item)
+    this.setSelection(position)
+}
+
+@BindingAdapter("onTouch")
+fun View.setTouchListener(onTouchListener: View.OnTouchListener) {
+    setOnTouchListener(onTouchListener)
+}
+
+@BindingAdapter("onFocusChange")
+fun View.onFocusChange(listener: View.OnFocusChangeListener) {
+    onFocusChangeListener = listener
 }

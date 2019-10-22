@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.databinding.ObservableField" />
+
+        <variable
+            name="layoutOwner"
+            type="com.srproject.presentation.customViews.CustomAmountPicker" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/minusImageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/white"
+            android:enabled="@{!layoutOwner.minValueReached}"
+            android:onClick="@{() -> layoutOwner.onDecrementButtonClick()}"
+            android:onLongClick="@{() -> layoutOwner.onDecrementButtonLongClick()}"
+            android:src="@drawable/ic_minus_purple"
+            android:textColor="@color/colorBlueLight"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/valueEditText"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onTouch="@{(view, event) -> layoutOwner.onDecrementButtonTouch(event)}" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/valueEditText"
+            onFocusChange="@{(v, hasFocus) -> layoutOwner.onEditTextFocusChange(hasFocus)}"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:afterTextChanged="@{(s) -> layoutOwner.onTextValueChanged()}"
+            android:background="@android:color/transparent"
+            android:inputType="number"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:minWidth="30dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:singleLine="true"
+            android:text="@={layoutOwner.textValue}"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="80dp"
+            app:layout_constraintWidth_min="40dp"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/plusImageButton"
+            onTouch="@{(view, event) -> layoutOwner.onIncrementButtonTouch(event)}"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@android:color/white"
+            android:onClick="@{() -> layoutOwner.onIncrementButtonClick()}"
+            android:onLongClick="@{() -> layoutOwner.onIncrementButtonLongClick()}"
+            android:src="@drawable/ic_plus_purple"
+            android:textColor="@color/colorBlueLight"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/valueEditText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -24,8 +24,7 @@ data class OrderPosition(
     @PrimaryKey(autoGenerate = true) var id: Long = -1,
     var productId: Long = -1,
     var amount: Int = 0,
-    var orderId: Long = -1,
-    var comment: String = ""
+    var orderId: Long = -1
 )
 
 @Entity

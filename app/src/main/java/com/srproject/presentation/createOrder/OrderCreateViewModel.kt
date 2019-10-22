@@ -1,29 +1,33 @@
 package com.srproject.presentation.createOrder
 
 import android.app.Application
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.viewModelScope
 import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.common.SingleLiveEvent
 import com.srproject.common.toReadableDate
 import com.srproject.data.Repository
-import com.srproject.data.models.Product
+import com.srproject.domain.usecases.CreateOrderUseCase
 import com.srproject.domain.usecases.GetProductsUseCase
-import com.srproject.presentation.models.OrderPositionUI
 import com.srproject.presentation.models.OrderUI
 
 class OrderCreateViewModel(application: Application, repository: Repository) :
-    BaseOrderInfoViewModel(application, repository) {
+    BaseOrderInfoViewModel(application, repository), UpdatePriceListener {
 
-    val adapter = OrderCreatePositionsAdapter()
+    val adapter = OrderCreatePositionsAdapter(this)
     val showErrorCommand = SingleLiveEvent<Errors>()
     private val getProductsUseCase = GetProductsUseCase(viewModelScope, repository)
+    private val createOrderUseCase = CreateOrderUseCase(viewModelScope, repository)
+    val navigateBackCommand = SingleLiveEvent<Unit>()
+    val isAddPositionButtonEnabled = ObservableBoolean()
 
-    init {
+    fun start() {
         dateCreated.set(System.currentTimeMillis().toReadableDate())
         active.set(true)
         calculatedPrice.set(0.toString())
         getProductsUseCase.obtainProducts { products ->
-            adapter.products = products.map { it.name }
+            adapter.products = products
+            isAddPositionButtonEnabled.set(products.isNotEmpty())
         }
     }
 
@@ -48,7 +52,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
     }
 
     fun onAddPositionClicked() {
-        adapter.addItem(OrderPositionUI(1, Product(1, "UUUUU", 500), 32, "fff", 1))
+        adapter.createNewItem()
     }
 
     fun onSaveClicked() {
@@ -66,8 +70,8 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
                 comment.get() ?: "",
                 adapter.items
             )
-//            updateOrderUseCase.updateOrder(orderUI)
-//            navigateBackCommand.call()
+            createOrderUseCase.createOrder(orderUI)
+            navigateBackCommand.call()
         }
     }
 
@@ -87,6 +91,9 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
         return true
     }
 
+    override fun onUpdatePrice() {
+        calculatedPrice.set(adapter.getTotalPrice().toString())
+    }
 }
 
 enum class Errors { CONSUMER, DUE_DATE, POSITIONS }

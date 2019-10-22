@@ -2,6 +2,7 @@ package com.srproject.presentation.createOrder
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
+import androidx.navigation.fragment.findNavController
 import com.srproject.R
 import com.srproject.common.OnBackPressedListener
 import com.srproject.common.obtainViewModel
@@ -21,6 +22,13 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
     override fun setupBinding(binding: FragmentOrderCreateBinding) {
         binding.viewModel = viewModel
         binding.listener = this
+    }
+
+    override fun setupViewModel() {
+        viewModel.start()
+        viewModel.navigateBackCommand.observe(this, androidx.lifecycle.Observer {
+            findNavController().popBackStack()
+        })
     }
 
     override fun onBackPressed(): Boolean {

@@ -20,12 +20,12 @@ class Repository private constructor(
     private val products = arrayListOf<Product>()
 
     init {
-        positions.add(OrderPosition(1, 1, 2, 1, "С молоком"))
-        positions.add(OrderPosition(2, 2, 3, 1, "С кофе"))
-        positions.add(OrderPosition(3, 3, 1, 1, "без сахара"))
-        positions.add(OrderPosition(4, 1, 2, 1, "С молоком"))
-        positions.add(OrderPosition(5, 2, 3, 1, "С кофе"))
-        positions.add(OrderPosition(6, 3, 1, 1, "без сахара"))
+        positions.add(OrderPosition(1, 1, 2, 1))
+        positions.add(OrderPosition(2, 2, 3, 1))
+        positions.add(OrderPosition(3, 3, 1, 1))
+        positions.add(OrderPosition(4, 1, 2, 1))
+        positions.add(OrderPosition(5, 2, 3, 1))
+        positions.add(OrderPosition(6, 3, 1, 1))
 
         products.add(Product(1, "Коробка конфет 12", 240))
         products.add(Product(2, "Коробка конфет 16", 290))

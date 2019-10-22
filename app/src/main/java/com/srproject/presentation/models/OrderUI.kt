@@ -20,6 +20,5 @@ data class OrderPositionUI(
     val id: Long,
     var product: Product,
     var amount: Int,
-    var comment: String,
     val orderId: Long
 )

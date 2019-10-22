@@ -200,6 +200,12 @@ class Repository private constructor(
         return products
     }
 
+    fun createOrder(order: Order) {
+        launch {
+            //TODO
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null

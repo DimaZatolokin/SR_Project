@@ -69,7 +69,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
                 dateCreated.get()!!,
                 dueDate.get()!!,
                 comment.get() ?: "",
-                adapter.items
+                adapter.items.filter { it.amount > 0 }
             )
             createOrderUseCase.createOrder(orderUI)
             navigateBackCommand.call()
@@ -85,7 +85,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
             showErrorCommand.postValue(Errors.DUE_DATE)
             return false
         }
-        if (adapter.items.isEmpty()) {
+        if (adapter.items.none { it.amount > 0 }) {
             showErrorCommand.postValue(Errors.POSITIONS)
             return false
         }

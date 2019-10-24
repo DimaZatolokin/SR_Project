@@ -46,11 +46,30 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
             R.id.item_settings -> {
                 findNavController().navigate(ActiveOrdersFragmentDirections.actionToSettings())
             }
+            R.id.item_filter -> {
+                viewModel.filterClicked()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.getItem(0).icon =
+            context?.getDrawable(if (viewModel.isFilterApplied) R.drawable.ic_filter_filled else R.drawable.ic_filter_white)
+        super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onAddOrderClick() {
         findNavController().navigate(ActiveOrdersFragmentDirections.actionToOrderCreate())
+    }
+
+    override fun onFilterDoneClicked() {
+        viewModel.onFilterDoneClicked()
+        activity?.invalidateOptionsMenu()
+    }
+
+    override fun onFilterPaidClicked() {
+        viewModel.onFilterPaidClicked()
+        activity?.invalidateOptionsMenu()
     }
 }

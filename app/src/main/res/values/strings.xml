@@ -30,4 +30,6 @@
     <string name="error_empty_consumer">Заплните поле Заказчик</string>
     <string name="error_empty_due_date">Выберите требуемую дату заказа</string>
     <string name="error_empty_positions">Выбирете хотя бы одну позицию для заказа</string>
+    <string name="menu_filter">Фильтр</string>
+    <string name="filter_text">Фильтровать:</string>
 </resources>

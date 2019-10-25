@@ -9,8 +9,27 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/item_settings"
-        android:icon="@drawable/ic_settings"
+        android:id="@+id/item_menu"
+        android:icon="@drawable/ic_menu_white"
         android:title="@string/menu_settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/item_menu_products"
+                android:title="@string/menu_products" />
+
+            <item
+                android:id="@+id/item_menu_consumers"
+                android:title="@string/menu_consumers" />
+
+            <item
+                android:id="@+id/item_menu_history"
+                android:title="@string/menu_history" />
+
+            <item
+                android:id="@+id/item_menu_settings"
+                android:title="@string/menu_settings" />
+        </menu>
+    </item>
 </menu>

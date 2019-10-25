@@ -29,7 +29,7 @@ class Repository private constructor(
 
         products.add(Product(1, "Коробка конфет 12", 240))
         products.add(Product(2, "Коробка конфет 16", 290))
-        products.add(Product(3, "Коробка шоколадок", 300))
+        products.add(Product(3, "Коробка шоколадок c малиновой начинкой", 300))
         products.add(Product(4, "Шоколадка белая", 130))
         products.add(Product(5, "Шоколадка черная", 130))
         products.add(Product(6, "Шоколадка молочная", 140))
@@ -201,6 +201,24 @@ class Repository private constructor(
     }
 
     fun createOrder(order: Order) {
+        launch {
+            //TODO
+        }
+    }
+
+    fun createProduct(product: Product) {
+        launch {
+            //TODO
+        }
+    }
+
+    fun updateProduct(product: Product) {
+        launch {
+            //TODO
+        }
+    }
+
+    fun deleteProduct(id: Long) {
         launch {
             //TODO
         }

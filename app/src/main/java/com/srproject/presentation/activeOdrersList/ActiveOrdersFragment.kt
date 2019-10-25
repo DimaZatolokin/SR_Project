@@ -43,11 +43,23 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_settings -> {
-                findNavController().navigate(ActiveOrdersFragmentDirections.actionToSettings())
+            R.id.item_menu -> {
+
             }
             R.id.item_filter -> {
                 viewModel.filterClicked()
+            }
+            R.id.item_menu_consumers -> {
+
+            }
+            R.id.item_menu_products -> {
+                findNavController().navigate(ActiveOrdersFragmentDirections.actionToProducts())
+            }
+            R.id.item_menu_settings -> {
+                findNavController().navigate(ActiveOrdersFragmentDirections.actionToSettings())
+            }
+            R.id.item_menu_history -> {
+
             }
         }
         return super.onOptionsItemSelected(item)

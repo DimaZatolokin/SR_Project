@@ -20,6 +20,7 @@
             android:id="@+id/spProducts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             app:selectedPositionItem="@{model.product.name}"
             tools:text="Коробка конфет" />
 

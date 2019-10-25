@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentActiveOrders">
 
@@ -30,6 +29,10 @@
         <action
             android:id="@+id/actionToOrderCreate"
             app:destination="@id/fragmentOrderCreate" />
+
+        <action
+            android:id="@+id/actionToProducts"
+            app:destination="@id/fragmentProducts" />
     </fragment>
 
     <fragment
@@ -81,5 +84,39 @@
         android:id="@+id/fragmentOrderCreate"
         android:name="com.srproject.presentation.createOrder.OrderCreateFragment"
         android:label="@string/order_create_title" />
+
+    <fragment
+        android:id="@+id/fragmentProducts"
+        android:name="com.srproject.presentation.products.ProductsFragment"
+        android:label="@string/products_title">
+
+        <action
+            android:id="@+id/actionToProductCreate"
+            app:destination="@id/fragmentProductCreate" />
+
+        <action
+            android:id="@+id/actionToProductEdit"
+            app:destination="@id/fragmentProductEdit">
+
+            <argument
+                android:name="id"
+                app:argType="long" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentProductCreate"
+        android:name="com.srproject.presentation.productCreate.ProductCreateFragment"
+        android:label="@string/product_create_title" />
+
+    <fragment
+        android:id="@+id/fragmentProductEdit"
+        android:name="com.srproject.presentation.productEdit.ProductEditFragment"
+        android:label="@string/product_edit_title">
+
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

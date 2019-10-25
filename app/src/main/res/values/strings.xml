@@ -32,4 +32,19 @@
     <string name="error_empty_positions">Выбирете хотя бы одну позицию для заказа</string>
     <string name="menu_filter">Фильтр</string>
     <string name="filter_text">Фильтровать:</string>
+    <string name="menu_products">Товары</string>
+    <string name="menu_consumers">Заказчики</string>
+    <string name="products_title">Мои товары</string>
+    <string name="menu_history">История заказов</string>
+    <string name="product_create_title">Создание товара</string>
+    <string name="hint_product_name">Название товара</string>
+    <string name="hint_product_price">Цена, грн</string>
+    <string name="create">Создать</string>
+    <string name="error_empty_product_name">Введите название товара</string>
+    <string name="error_empty_product_price">Введите стоимость товара</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="product_edit_title">Редактирование товара</string>
+    <string name="error_product_not_found">Товар не найден</string>
+    <string name="delete_product_message">Вы уверены, что хотите удалить этот товар?</string>
 </resources>

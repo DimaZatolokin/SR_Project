@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.srproject.presentation.productCreate.ProductCreateActionListener" />
+
+        <variable
+            name="viewModel"
+            type="com.srproject.presentation.productCreate.ProductCreateViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/filter_item_unselect_bg"
+            android:hint="@string/hint_product_name"
+            android:imeOptions="actionNext"
+            android:maxLength="100"
+            android:padding="8dp"
+            android:text="@={viewModel.name}"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/filter_item_unselect_bg"
+            android:hint="@string/hint_product_price"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="5"
+            android:padding="8dp"
+            android:text="@={viewModel.price}"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="@{() -> listener.onCreateClick()}"
+            android:text="@string/create"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</layout>

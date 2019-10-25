@@ -31,6 +31,7 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
     }
 
     override fun setupViewModel() {
+        viewModel.start()
         viewModel.navigateToDetailsEvent.observe(this, Observer {
             findNavController().navigate(ActiveOrdersFragmentDirections.actionToOrderDetails(it))
         })

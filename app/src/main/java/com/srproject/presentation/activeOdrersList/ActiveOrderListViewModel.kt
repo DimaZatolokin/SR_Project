@@ -19,7 +19,7 @@ class ActiveOrderListViewModel(application: Application, repository: Repository)
     val filterNotPaidSelected = ObservableBoolean()
     var isFilterApplied = false
 
-    init {
+    fun start() {
         useCase.obtainActiveOrders {
             adapter.items = it
         }

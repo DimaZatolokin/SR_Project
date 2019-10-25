@@ -118,6 +118,13 @@ class OrderEditViewModel(application: Application, repository: Repository) :
             navigateBackCommand.call()
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        getProductsUseCase.onClear()
+        getOrderUseCase.onClear()
+        updateOrderUseCase.onClear()
+    }
 }
 
 enum class Errors { CONSUMER, POSITIONS }

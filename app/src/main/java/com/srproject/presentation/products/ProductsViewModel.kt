@@ -23,4 +23,9 @@ class ProductsViewModel(application: Application, repository: Repository) :
     override fun onEditClicked(id: Long) {
         navigateToProductEditCommand.postValue(id)
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        getProductsUseCase.onClear()
+    }
 }

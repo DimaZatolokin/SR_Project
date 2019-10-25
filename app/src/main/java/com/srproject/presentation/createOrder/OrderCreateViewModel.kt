@@ -103,6 +103,12 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
             navigateBackCommand.call()
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        getProductsUseCase.onClear()
+        createOrderUseCase.onClear()
+    }
 }
 
 enum class Errors { CONSUMER, DUE_DATE, POSITIONS }

@@ -2,7 +2,6 @@ package com.srproject.presentation.orderEdit
 
 import android.app.Application
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.common.SingleLiveEvent
 import com.srproject.common.toReadableDate
@@ -18,10 +17,10 @@ import com.srproject.presentation.models.OrderUI
 class OrderEditViewModel(application: Application, repository: Repository) :
     BaseOrderInfoViewModel(application, repository), UpdatePriceListener {
 
-    private val getOrderUseCase = GetOrderDetailsUseCase(viewModelScope, repository)
+    private val getOrderUseCase = GetOrderDetailsUseCase(repository)
     val adapter = OrderCreatePositionsAdapter(this)
-    private val updateOrderUseCase = UpdateOrderUseCase(viewModelScope, repository)
-    private val getProductsUseCase = GetProductsUseCase(viewModelScope, repository)
+    private val updateOrderUseCase = UpdateOrderUseCase(repository)
+    private val getProductsUseCase = GetProductsUseCase(repository)
     private var id = -1L
     val navigateBackCommand = SingleLiveEvent<Unit>()
     val isAddPositionButtonEnabled = ObservableBoolean()
@@ -121,9 +120,9 @@ class OrderEditViewModel(application: Application, repository: Repository) :
 
     override fun onCleared() {
         super.onCleared()
-        getProductsUseCase.onClear()
-        getOrderUseCase.onClear()
-        updateOrderUseCase.onClear()
+        getProductsUseCase.cancel()
+        getOrderUseCase.cancel()
+        updateOrderUseCase.cancel()
     }
 }
 

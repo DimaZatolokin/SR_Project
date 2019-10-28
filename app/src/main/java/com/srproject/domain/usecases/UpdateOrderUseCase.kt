@@ -4,10 +4,8 @@ import com.srproject.data.Repository
 import com.srproject.domain.mappers.OrderPositionsPresentationMapper
 import com.srproject.domain.mappers.OrderPresentationMapper
 import com.srproject.presentation.models.OrderUI
-import kotlinx.coroutines.CoroutineScope
 
-class UpdateOrderUseCase(coroutineScope: CoroutineScope, private val repository: Repository) :
-    BaseUseCase(coroutineScope) {
+class UpdateOrderUseCase(private val repository: Repository) : BaseUseCase() {
 
     private val orderPresentationMapper = OrderPresentationMapper()
     private val positionsPresentationMapper = OrderPositionsPresentationMapper()

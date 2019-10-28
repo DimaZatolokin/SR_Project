@@ -5,17 +5,15 @@ import com.srproject.data.models.Product
 import com.srproject.domain.mappers.OrderPositionsPresentationMapper
 import com.srproject.domain.mappers.OrderPresentationMapper
 import com.srproject.presentation.models.OrderUI
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class GetOrderDetailsUseCase(coroutineScope: CoroutineScope, private val repository: Repository) :
-    BaseUseCase(coroutineScope) {
+class GetOrderDetailsUseCase(private val repository: Repository) : BaseUseCase() {
 
     private val orderPresentationMapper = OrderPresentationMapper()
     private val positionPresentationMapper = OrderPositionsPresentationMapper()
 
     fun obtainOrderDetails(id: Long, action: (OrderUI?) -> Unit) {
-        coroutineScope.launch {
+        launch {
             val order = repository.getOrderById(id)
             order?.run {
                 val orderUI = orderPresentationMapper.toPresentation(order)

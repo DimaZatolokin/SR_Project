@@ -16,8 +16,8 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
 
     val adapter = OrderCreatePositionsAdapter(this)
     val showErrorCommand = SingleLiveEvent<Errors>()
-    private val getProductsUseCase = GetProductsUseCase(viewModelScope, repository)
-    private val createOrderUseCase = CreateOrderUseCase(viewModelScope, repository)
+    private val getProductsUseCase = GetProductsUseCase(repository)
+    private val createOrderUseCase = CreateOrderUseCase(repository)
     val navigateBackCommand = SingleLiveEvent<Unit>()
     val showExitDialogCommand = SingleLiveEvent<Unit>()
     val isAddPositionButtonEnabled = ObservableBoolean()
@@ -106,8 +106,8 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
 
     override fun onCleared() {
         super.onCleared()
-        getProductsUseCase.onClear()
-        createOrderUseCase.onClear()
+        getProductsUseCase.cancel()
+        createOrderUseCase.cancel()
     }
 }
 

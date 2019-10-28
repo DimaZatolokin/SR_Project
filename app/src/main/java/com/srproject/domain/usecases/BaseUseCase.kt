@@ -1,8 +1,19 @@
 package com.srproject.domain.usecases
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlin.coroutines.CoroutineContext
 
-abstract class BaseUseCase(protected val coroutineScope: CoroutineScope) {
+abstract class BaseUseCase : CoroutineScope {
 
-    open fun onClear() {}
+    private val job: Job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Default + job
+
+
+    open fun cancel() {
+        job.cancel()
+    }
 }

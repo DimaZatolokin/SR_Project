@@ -12,7 +12,7 @@ class ActiveOrderListViewModel(application: Application, repository: Repository)
     BaseViewModel(application, repository), ActiveOrderClickListener {
 
     val adapter = OrdersAdapter(this)
-    private val useCase = GetActiveOrdersUseCase(viewModelScope, repository)
+    private val useCase = GetActiveOrdersUseCase(repository)
     val navigateToDetailsEvent = SingleLiveEvent<Long>()
     val filtersVisible = ObservableBoolean()
     val filterNotDoneSelected = ObservableBoolean()
@@ -26,7 +26,7 @@ class ActiveOrderListViewModel(application: Application, repository: Repository)
     }
 
     override fun onCleared() {
-        useCase.onClear()
+        useCase.cancel()
     }
 
     override fun onOrderClicked(id: Long) {

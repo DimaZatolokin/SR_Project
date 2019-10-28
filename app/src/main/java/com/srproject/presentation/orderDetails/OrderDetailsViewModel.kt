@@ -1,7 +1,6 @@
 package com.srproject.presentation.orderDetails
 
 import android.app.Application
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.data.Repository
 import com.srproject.domain.usecases.GetOrderDetailsUseCase
@@ -9,7 +8,7 @@ import com.srproject.domain.usecases.GetOrderDetailsUseCase
 class OrderDetailsViewModel(application: Application, repository: Repository) :
     BaseOrderInfoViewModel(application, repository) {
 
-    private val useCase = GetOrderDetailsUseCase(viewModelScope, repository)
+    private val useCase = GetOrderDetailsUseCase(repository)
     val adapter = OrderDetailsPositionsAdapter()
 
     fun start(id: Long) {
@@ -30,6 +29,6 @@ class OrderDetailsViewModel(application: Application, repository: Repository) :
     }
 
     override fun onCleared() {
-        useCase.onClear()
+        useCase.cancel()
     }
 }

@@ -2,7 +2,6 @@ package com.srproject.presentation.productCreate
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.SingleLiveEvent
 import com.srproject.data.Repository
 import com.srproject.data.models.Product
@@ -14,7 +13,7 @@ class ProductCreateViewModel(application: Application, repository: Repository) :
 
     val name = ObservableField<String>()
     val price = ObservableField<String>()
-    private val useCase = CreateProductUseCase(viewModelScope, repository)
+    private val useCase = CreateProductUseCase(repository)
     val showErrorCommand = SingleLiveEvent<Errors>()
     val navigateBackCommand = SingleLiveEvent<Unit>()
 

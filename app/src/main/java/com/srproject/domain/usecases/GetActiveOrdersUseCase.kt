@@ -8,11 +8,11 @@ import com.srproject.presentation.models.OrderPositionUI
 import com.srproject.presentation.models.OrderUI
 import com.srproject.domain.mappers.OrderPositionsPresentationMapper
 import com.srproject.domain.mappers.OrderPresentationMapper
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class GetActiveOrdersUseCase(coroutineScope: CoroutineScope, private val repository: Repository) :
-    BaseUseCase(coroutineScope) {
+class GetActiveOrdersUseCase(private val repository: Repository) : BaseUseCase() {
 
     private val orderPresentationMapper = OrderPresentationMapper()
     private val positionPresentationMapper = OrderPositionsPresentationMapper()
@@ -20,7 +20,7 @@ class GetActiveOrdersUseCase(coroutineScope: CoroutineScope, private val reposit
     private val activeOrdersObserver = Observer<List<Order>> { list ->
         val orderUIs = arrayListOf<OrderUI>()
         list.forEach { order ->
-            coroutineScope.launch {
+            launch {
                 val positionsUIs = arrayListOf<OrderPositionUI>()
                 order.positions.forEach { orderPosition ->
                     positionsUIs.add(positionPresentationMapper.toPresentation(orderPosition).apply {
@@ -43,7 +43,8 @@ class GetActiveOrdersUseCase(coroutineScope: CoroutineScope, private val reposit
     }
     private var action: ((List<OrderUI>) -> Unit)? = null
 
-    override fun onClear() {
+    override fun cancel() {
+        super.cancel()
         if (::activeOrdersLiveData.isInitialized) {
             activeOrdersLiveData.removeObserver(activeOrdersObserver)
         }
@@ -51,9 +52,9 @@ class GetActiveOrdersUseCase(coroutineScope: CoroutineScope, private val reposit
 
     fun obtainActiveOrders(action: (List<OrderUI>) -> Unit) {
         this.action = action
-        coroutineScope.launch {
+        launch {
             activeOrdersLiveData = repository.getActiveOrders()
-            activeOrdersLiveData.observeForever(activeOrdersObserver)
+            withContext(Dispatchers.Main) { activeOrdersLiveData.observeForever(activeOrdersObserver) }
         }
     }
 }

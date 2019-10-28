@@ -2,7 +2,6 @@ package com.srproject.presentation.productEdit
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.SingleLiveEvent
 import com.srproject.data.Repository
 import com.srproject.data.models.Product
@@ -18,9 +17,9 @@ class ProductEditViewModel(application: Application, repository: Repository) :
     val price = ObservableField<String>()
     val showErrorCommand = SingleLiveEvent<Errors>()
     val navigateBackCommand = SingleLiveEvent<Unit>()
-    private val updateProductUseCase = UpdateProductUseCase(viewModelScope, repository)
-    private val getProductUseCase = GetProductByIdUseCase(viewModelScope, repository)
-    private val deleteProductUseCase = DeleteProductUseCase(viewModelScope, repository)
+    private val updateProductUseCase = UpdateProductUseCase(repository)
+    private val getProductUseCase = GetProductByIdUseCase(repository)
+    private val deleteProductUseCase = DeleteProductUseCase(repository)
     private var id = 0L
 
     fun start(id: Long) {

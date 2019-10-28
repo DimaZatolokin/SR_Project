@@ -1,7 +1,6 @@
 package com.srproject.presentation.products
 
 import android.app.Application
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.SingleLiveEvent
 import com.srproject.data.Repository
 import com.srproject.domain.usecases.GetProductsUseCase
@@ -11,7 +10,7 @@ class ProductsViewModel(application: Application, repository: Repository) :
     BaseViewModel(application, repository), ProductEditClickListener {
 
     val adapter = ProductsAdapter(this)
-    private val getProductsUseCase = GetProductsUseCase(viewModelScope, repository)
+    private val getProductsUseCase = GetProductsUseCase(repository)
     val navigateToProductEditCommand = SingleLiveEvent<Long>()
 
     fun start() {
@@ -26,6 +25,6 @@ class ProductsViewModel(application: Application, repository: Repository) :
 
     override fun onCleared() {
         super.onCleared()
-        getProductsUseCase.onClear()
+        getProductsUseCase.cancel()
     }
 }

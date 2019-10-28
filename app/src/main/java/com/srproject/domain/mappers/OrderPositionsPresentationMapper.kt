@@ -15,6 +15,6 @@ class OrderPositionsPresentationMapper :
     )
 
     override fun fromPresentation(model: OrderPositionUI): OrderPosition {
-        return OrderPosition(model.id, model.product.id, model.amount, model.orderId)
+        return OrderPosition(model.id, model.product.id!!, model.amount, model.orderId)
     }
 }

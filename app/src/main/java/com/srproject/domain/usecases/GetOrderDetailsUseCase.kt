@@ -5,7 +5,9 @@ import com.srproject.data.models.Product
 import com.srproject.domain.mappers.OrderPositionsPresentationMapper
 import com.srproject.domain.mappers.OrderPresentationMapper
 import com.srproject.presentation.models.OrderUI
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class GetOrderDetailsUseCase(private val repository: Repository) : BaseUseCase() {
 
@@ -24,8 +26,12 @@ class GetOrderDetailsUseCase(private val repository: Repository) : BaseUseCase()
                         this.product = product ?: Product()
                     }
                 }
-                action.invoke(orderUI)
-            } ?: action.invoke(null)
+                withContext(Dispatchers.Main) {
+                    action.invoke(orderUI)
+                }
+            } ?: withContext(Dispatchers.Main) {
+                action.invoke(null)
+            }
         }
     }
 }

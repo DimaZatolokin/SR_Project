@@ -2,7 +2,6 @@ package com.srproject.presentation.activeOdrersList
 
 import android.app.Application
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.SingleLiveEvent
 import com.srproject.data.Repository
 import com.srproject.domain.usecases.GetActiveOrdersUseCase

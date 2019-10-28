@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SR Project</string>
     <string name="menu_settings">Настройки</string>
-    <string name="orders_title">Заказы</string>
+    <string name="active_orders_title">Текущие заказы</string>
     <string name="order_details_title">Детали заказа</string>
     <string name="text_consumer">Заказчик:</string>
     <string name="text_due_date">Отдать:</string>

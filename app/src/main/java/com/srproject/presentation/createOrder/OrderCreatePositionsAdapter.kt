@@ -34,7 +34,7 @@ class OrderCreatePositionsAdapter(private val updatePriceListener: UpdatePriceLi
 
     fun createNewItem() {
         if (products.isNotEmpty()) {
-            items.add(OrderPositionUI(-1, products.first(), 0, -1))
+            items.add(OrderPositionUI(null, products.first(), 0, -1))
             notifyDataSetChanged()
         }
     }

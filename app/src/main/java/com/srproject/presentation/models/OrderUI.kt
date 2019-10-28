@@ -3,7 +3,7 @@ package com.srproject.presentation.models
 import com.srproject.data.models.Product
 
 data class OrderUI(
-    val id: Long,
+    val id: Long?,
     val consumer: String,
     val price: Int,
     val paid: Boolean,
@@ -17,8 +17,8 @@ data class OrderUI(
 )
 
 data class OrderPositionUI(
-    val id: Long,
+    val id: Long?,
     var product: Product,
     var amount: Int,
-    val orderId: Long
+    val orderId: Long?
 )

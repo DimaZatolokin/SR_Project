@@ -38,7 +38,7 @@ class ProductsAdapter(private val listener: ProductEditClickListener) :
 
         fun bind(item: Product) {
             binding.model = item
-            binding.btnEdit.setOnClickListener { listener.onEditClicked(item.id) }
+            binding.btnEdit.setOnClickListener { listener.onEditClicked(item.id!!) }
         }
     }
 }

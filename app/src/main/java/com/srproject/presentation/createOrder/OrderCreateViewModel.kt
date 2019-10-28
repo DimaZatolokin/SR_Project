@@ -59,7 +59,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
     fun onSaveClicked() {
         if (areFieldsValid()) {
             val orderUI = OrderUI(
-                -1,
+                null,
                 consumer.get()!!,
                 if (realPrice.get().isNullOrEmpty()) 0 else realPrice.get()!!.toInt(),
                 paid.get(),

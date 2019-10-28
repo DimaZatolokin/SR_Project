@@ -17,12 +17,13 @@ class GetActiveOrdersUseCase(private val repository: Repository) : BaseUseCase()
     private val orderPresentationMapper = OrderPresentationMapper()
     private val positionPresentationMapper = OrderPositionsPresentationMapper()
     private lateinit var activeOrdersLiveData: LiveData<List<Order>>
-    private val activeOrdersObserver = Observer<List<Order>> { list ->
-        val orderUIs = arrayListOf<OrderUI>()
-        list.forEach { order ->
-            launch {
+    private val activeOrdersObserver = Observer<List<Order>> { orders ->
+        launch {
+            val orderUIs = arrayListOf<OrderUI>()
+            orders.forEach { order ->
+                val positions = repository.getOrderPositionsByOrderId(order.id!!)
                 val positionsUIs = arrayListOf<OrderPositionUI>()
-                order.positions.forEach { orderPosition ->
+                positions.forEach { orderPosition ->
                     positionsUIs.add(positionPresentationMapper.toPresentation(orderPosition).apply {
                         repository.getProductById(orderPosition.productId)?.let {
                             this.product = it
@@ -38,7 +39,7 @@ class GetActiveOrdersUseCase(private val repository: Repository) : BaseUseCase()
                     }
                 })
             }
-            action?.invoke(orderUIs)
+            withContext(Dispatchers.Main) { action?.invoke(orderUIs) }
         }
     }
     private var action: ((List<OrderUI>) -> Unit)? = null

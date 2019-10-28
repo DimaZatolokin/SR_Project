@@ -40,7 +40,7 @@ class OrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
             binding.model = order
             binding.rvPositions.adapter = OrdersPositionsAdapter(order.positions)
             binding.root.setOnClickListener {
-                orderClickListener.onOrderClicked(order.id)
+                orderClickListener.onOrderClicked(order.id!!)
             }
         }
     }

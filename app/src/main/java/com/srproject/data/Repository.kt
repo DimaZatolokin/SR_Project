@@ -1,7 +1,6 @@
 package com.srproject.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.srproject.data.models.Order
 import com.srproject.data.models.OrderPosition
 import com.srproject.data.models.Product
@@ -37,7 +36,7 @@ class Repository private constructor(
 
     fun updateOrder(order: Order) {
         launch {
-            //TODO
+            dbStorage.getOrdersDao().saveOrder(order)
         }
     }
 
@@ -59,13 +58,13 @@ class Repository private constructor(
 
     fun updateProduct(product: Product) {
         launch {
-            //TODO
+            dbStorage.getProductDao().insertProduct(product)
         }
     }
 
     fun deleteProduct(id: Long) {
         launch {
-            //TODO
+            dbStorage.getProductDao().deleteProduct(id)
         }
     }
 

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Order(
-    @PrimaryKey(autoGenerate = true) var id: Long = -1,
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
     var consumer: String = "",
     @Ignore var positions: List<OrderPosition> = emptyList(),
     var price: Int = 0,
@@ -21,15 +21,15 @@ data class Order(
 
 @Entity
 data class OrderPosition(
-    @PrimaryKey(autoGenerate = true) var id: Long = -1,
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
     var productId: Long = -1,
     var amount: Int = 0,
-    var orderId: Long = -1
+    var orderId: Long? = null
 )
 
 @Entity
 data class Product(
-    @PrimaryKey var id: Long = -1,
+    @PrimaryKey(autoGenerate = true) var id: Long? = null,
     var name: String = "",
     var price: Int = 0
 )

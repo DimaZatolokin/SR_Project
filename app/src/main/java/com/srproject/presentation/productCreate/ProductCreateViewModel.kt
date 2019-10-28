@@ -19,7 +19,7 @@ class ProductCreateViewModel(application: Application, repository: Repository) :
 
     fun createProduct() {
         if (validateFields()) {
-            useCase.createProduct(Product(-1, name.get()!!, price.get()!!.toInt()))
+            useCase.createProduct(Product(null, name.get()!!, price.get()!!.toInt()))
             navigateBackCommand.call()
         }
     }

@@ -1,10 +1,7 @@
 package com.srproject.data.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.srproject.data.models.Product
 
 @Dao
@@ -18,4 +15,7 @@ abstract class ProductsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertProduct(product: Product)
+
+    @Query("DELETE FROM Product WHERE id == :id")
+    abstract fun deleteProduct(id: Long)
 }

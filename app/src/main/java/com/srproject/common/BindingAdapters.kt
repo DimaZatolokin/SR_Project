@@ -88,9 +88,9 @@ fun View.onFocusChange(listener: View.OnFocusChangeListener) {
 
 @BindingAdapter("filterSelected")
 fun TextView.setFilterSelected(selected: Boolean) {
-    if (selected) {
-        background = context.getDrawable(R.drawable.filter_item_selected_bg)
+    background = if (selected) {
+        context.getDrawable(R.drawable.filter_item_selected_bg)
     } else {
-        background = context.getDrawable(R.drawable.filter_item_unselect_bg)
+        context.getDrawable(R.drawable.filter_item_unselect_bg)
     }
 }

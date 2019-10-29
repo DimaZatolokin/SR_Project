@@ -28,23 +28,23 @@ class OrderEditViewModel(application: Application, repository: Repository) :
     val showExitDialogCommand = SingleLiveEvent<Unit>()
 
     fun start(id: Long) {
-        getOrderUseCase.obtainOrderDetails(id) {
-            it?.run {
-                this@OrderEditViewModel.consumer.set(consumer)
-                this@OrderEditViewModel.dueDate.set(dueDate)
-                this@OrderEditViewModel.dateCreated.set(dateCreated)
-                this@OrderEditViewModel.realPrice.set(price.toString())
-                this@OrderEditViewModel.calculatedPrice.set(calculatedPrice.toString())
-                this@OrderEditViewModel.done.set(done)
-                this@OrderEditViewModel.active.set(active)
-                this@OrderEditViewModel.paid.set(paid)
-                this@OrderEditViewModel.comment.set(comment)
-                adapter.items = this.positions as ArrayList<OrderPositionUI>
-            }
-        }
         getProductsUseCase.obtainProducts { products ->
             adapter.products = products
             isAddPositionButtonEnabled.set(products.isNotEmpty())
+            getOrderUseCase.obtainOrderDetails(id) {
+                it?.run {
+                    this@OrderEditViewModel.consumer.set(consumer)
+                    this@OrderEditViewModel.dueDate.set(dueDate)
+                    this@OrderEditViewModel.dateCreated.set(dateCreated)
+                    this@OrderEditViewModel.realPrice.set(price.toString())
+                    this@OrderEditViewModel.calculatedPrice.set(calculatedPrice.toString())
+                    this@OrderEditViewModel.done.set(done)
+                    this@OrderEditViewModel.active.set(active)
+                    this@OrderEditViewModel.paid.set(paid)
+                    this@OrderEditViewModel.comment.set(comment)
+                    adapter.items = this.positions as ArrayList<OrderPositionUI>
+                }
+            }
         }
         this.id = id
     }

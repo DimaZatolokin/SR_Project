@@ -17,8 +17,9 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:text="@{model.product.name}"
             android:textColor="#442200"
             android:textSize="22sp"
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
+            android:layout_marginEnd="14dp"
             android:text="@{@string/items(model.amount)}"
             android:textColor="#440000"
             android:textSize="26sp"

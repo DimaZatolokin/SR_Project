@@ -33,4 +33,7 @@ abstract class OrdersDao {
 
     @Query("SELECT * FROM `Order` WHERE id == :id")
     abstract fun getOrderById(id: Long): Order?
+
+    @Query("DELETE FROM `Order` WHERE id == :id")
+    abstract fun deleteOrder(id: Long)
 }

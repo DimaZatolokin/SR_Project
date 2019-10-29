@@ -6,9 +6,7 @@ import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.common.SingleLiveEvent
 import com.srproject.common.toReadableDate
 import com.srproject.data.Repository
-import com.srproject.domain.usecases.GetOrderDetailsUseCase
-import com.srproject.domain.usecases.GetProductsUseCase
-import com.srproject.domain.usecases.UpdateOrderUseCase
+import com.srproject.domain.usecases.*
 import com.srproject.presentation.createOrder.OrderCreatePositionsAdapter
 import com.srproject.presentation.createOrder.UpdatePriceListener
 import com.srproject.presentation.models.OrderPositionUI
@@ -20,9 +18,11 @@ class OrderEditViewModel(application: Application, repository: Repository) :
     private val getOrderUseCase = GetOrderDetailsUseCase(repository)
     val adapter = OrderCreatePositionsAdapter(this)
     private val updateOrderUseCase = UpdateOrderUseCase(repository)
+    private val deleteOrderUseCase = DeleteOrderUseCase(repository)
     private val getProductsUseCase = GetProductsUseCase(repository)
     private var id = -1L
     val navigateBackCommand = SingleLiveEvent<Unit>()
+    val navigateToMainScreenCommand = SingleLiveEvent<Unit>()
     val isAddPositionButtonEnabled = ObservableBoolean()
     val showErrorCommand = SingleLiveEvent<Errors>()
     val showExitDialogCommand = SingleLiveEvent<Unit>()
@@ -67,6 +67,11 @@ class OrderEditViewModel(application: Application, repository: Repository) :
             updateOrderUseCase.updateOrder(orderUI)
             navigateBackCommand.call()
         }
+    }
+
+    fun onDeleteClicked() {
+        deleteOrderUseCase.deleteOrder(id)
+        navigateToMainScreenCommand.call()
     }
 
     private fun areFieldsValid(): Boolean {

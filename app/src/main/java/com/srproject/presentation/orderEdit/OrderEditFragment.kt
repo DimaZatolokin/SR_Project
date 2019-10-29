@@ -44,17 +44,26 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
                     })
             })
             showErrorCommand.observe(this@OrderEditFragment, Observer {
-                val message = when(it) {
+                val message = when (it) {
                     Errors.CONSUMER -> getString(R.string.error_empty_consumer)
                     Errors.POSITIONS -> getString(R.string.error_empty_positions)
                 }
                 Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            })
+            navigateToMainScreenCommand.observe(this@OrderEditFragment, Observer {
+                findNavController().popBackStack(R.id.fragmentActiveOrders, false)
             })
         }
     }
 
     override fun onSaveClick() {
         viewModel.onSaveClicked()
+    }
+
+    override fun onDeleteClick() {
+        showQuestionDialog(message = getString(R.string.delete_order_message), actionAccept = {
+            viewModel.onDeleteClicked()
+        }, actionDecline = {})
     }
 
     override fun onDateCreatedClick() {

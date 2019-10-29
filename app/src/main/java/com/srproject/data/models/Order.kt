@@ -1,6 +1,7 @@
 package com.srproject.data.models
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
@@ -19,7 +20,15 @@ data class Order(
     var comment: String = ""
 )
 
-@Entity
+
+@Entity(
+    foreignKeys = [ForeignKey(
+        entity = Order::class,
+        parentColumns = ["id"],
+        childColumns = ["orderId"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 data class OrderPosition(
     @PrimaryKey(autoGenerate = true) var id: Long? = null,
     var productId: Long = -1,

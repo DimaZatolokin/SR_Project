@@ -72,6 +72,12 @@ class Repository private constructor(
         return dbStorage.getProductDao().getProductUsagesCount(id)
     }
 
+    fun deleteOrder(id: Long) {
+        launch {
+            dbStorage.getOrdersDao().deleteOrder(id)
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null

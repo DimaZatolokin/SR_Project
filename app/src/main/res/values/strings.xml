@@ -47,4 +47,5 @@
     <string name="product_edit_title">Редактирование товара</string>
     <string name="error_product_not_found">Товар не найден</string>
     <string name="delete_product_message">Вы уверены, что хотите удалить этот товар?</string>
+    <string name="error_product_used">Этот товар нельзя удалить, т.к. он уже используется в заказе</string>
 </resources>

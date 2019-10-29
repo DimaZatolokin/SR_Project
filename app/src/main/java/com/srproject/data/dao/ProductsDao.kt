@@ -18,4 +18,7 @@ abstract class ProductsDao {
 
     @Query("DELETE FROM Product WHERE id == :id")
     abstract fun deleteProduct(id: Long)
+
+    @Query("SELECT COUNT(*) FROM OrderPosition WHERE productId == :productId AND amount > 0")
+    abstract fun getProductUsagesCount(productId: Long): Int
 }

@@ -33,6 +33,7 @@ class ProductEditFragment : BaseFragment<FragmentProductEditBinding>(), ProductE
                 val stringId = when (it) {
                     Errors.NAME -> R.string.error_empty_product_name
                     Errors.PRICE -> R.string.error_empty_product_price
+                    Errors.PRODUCT_USED -> R.string.error_product_used
                     Errors.PRODUCT_NOT_FOUND -> {
                         Handler().postDelayed({
                             findNavController().popBackStack()

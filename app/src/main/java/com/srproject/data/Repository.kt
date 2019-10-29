@@ -68,6 +68,10 @@ class Repository private constructor(
         }
     }
 
+    suspend fun getProductUsagesCount(id: Long): Int {
+        return dbStorage.getProductDao().getProductUsagesCount(id)
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null

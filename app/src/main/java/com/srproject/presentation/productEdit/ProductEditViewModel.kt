@@ -5,6 +5,7 @@ import androidx.databinding.ObservableField
 import com.srproject.common.SingleLiveEvent
 import com.srproject.data.Repository
 import com.srproject.data.models.Product
+import com.srproject.domain.usecases.CheckIfProductUsedUseCase
 import com.srproject.domain.usecases.DeleteProductUseCase
 import com.srproject.domain.usecases.GetProductByIdUseCase
 import com.srproject.domain.usecases.UpdateProductUseCase
@@ -20,6 +21,7 @@ class ProductEditViewModel(application: Application, repository: Repository) :
     private val updateProductUseCase = UpdateProductUseCase(repository)
     private val getProductUseCase = GetProductByIdUseCase(repository)
     private val deleteProductUseCase = DeleteProductUseCase(repository)
+    private val checkProductUsagesUseCase = CheckIfProductUsedUseCase(repository)
     private var id = 0L
 
     fun start(id: Long) {
@@ -40,8 +42,14 @@ class ProductEditViewModel(application: Application, repository: Repository) :
     }
 
     fun onDeleteClicked() {
-        deleteProductUseCase.deleteProduct(id)
-        navigateBackCommand.call()
+        checkProductUsagesUseCase.checkIfProductUsed(id) {
+            if (it) {
+                showErrorCommand.postValue(Errors.PRODUCT_USED)
+            } else {
+                deleteProductUseCase.deleteProduct(id)
+                navigateBackCommand.call()
+            }
+        }
     }
 
     private fun validateFields(): Boolean {
@@ -57,4 +65,4 @@ class ProductEditViewModel(application: Application, repository: Repository) :
     }
 }
 
-enum class Errors { NAME, PRICE, PRODUCT_NOT_FOUND }
+enum class Errors { NAME, PRICE, PRODUCT_NOT_FOUND, PRODUCT_USED }

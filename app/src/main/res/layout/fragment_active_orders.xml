@@ -15,73 +15,85 @@
             type="com.srproject.presentation.activeOdrersList.ActiveOrderListViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/layoutFilter"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/filter_layout_bg"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:visibility="@{viewModel.filtersVisible ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_gravity="center"
+            android:text="@string/orders_empty_text"
+            android:textSize="22sp"
+            android:visibility="@{viewModel.noItems}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/filter_text"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvFilterDone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:onClick="@{() -> listener.onFilterDoneClicked()}"
-                android:padding="5dp"
-                android:text="не сделанные"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                app:filterSelected="@{viewModel.filterNotDoneSelected}" />
-
-            <TextView
-                android:id="@+id/tvFilterPaid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:onClick="@{() -> listener.onFilterPaidClicked()}"
-                android:padding="5dp"
-                android:text="не оплаченные"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                app:filterSelected="@{viewModel.filterNotPaidSelected}" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvActiveOrders"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:adapter="@{viewModel.adapter}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutFilter" />
+            android:layout_height="match_parent"
+            android:visibility="@{!viewModel.noItems}">
+
+            <LinearLayout
+                android:id="@+id/layoutFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/filter_layout_bg"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:visibility="@{viewModel.filtersVisible ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filter_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvFilterDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:onClick="@{() -> listener.onFilterDoneClicked()}"
+                    android:padding="5dp"
+                    android:text="не сделанные"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    app:filterSelected="@{viewModel.filterNotDoneSelected}" />
+
+                <TextView
+                    android:id="@+id/tvFilterPaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:onClick="@{() -> listener.onFilterPaidClicked()}"
+                    android:padding="5dp"
+                    android:text="не оплаченные"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    app:filterSelected="@{viewModel.filterNotPaidSelected}" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvActiveOrders"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:adapter="@{viewModel.adapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutFilter" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/colorBlueLight"
             android:onClick="@{()->listener.onAddOrderClick()}"
             android:src="@drawable/ic_add_white"
-            app:borderWidth="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:borderWidth="0dp" />
+    </FrameLayout>
 </layout>

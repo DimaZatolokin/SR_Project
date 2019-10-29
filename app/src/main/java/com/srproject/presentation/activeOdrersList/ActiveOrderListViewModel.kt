@@ -16,11 +16,13 @@ class ActiveOrderListViewModel(application: Application, repository: Repository)
     val filtersVisible = ObservableBoolean()
     val filterNotDoneSelected = ObservableBoolean()
     val filterNotPaidSelected = ObservableBoolean()
+    val noItems = ObservableBoolean(true)
     var isFilterApplied = false
 
     fun start() {
         useCase.obtainActiveOrders {
             adapter.items = it
+            noItems.set(it.isEmpty())
         }
     }
 
@@ -33,7 +35,11 @@ class ActiveOrderListViewModel(application: Application, repository: Repository)
     }
 
     fun filterClicked() {
-        filtersVisible.set(!filtersVisible.get())
+        if (noItems.get()) {
+            filtersVisible.set(false)
+        } else {
+            filtersVisible.set(!filtersVisible.get())
+        }
     }
 
     fun onFilterDoneClicked() {

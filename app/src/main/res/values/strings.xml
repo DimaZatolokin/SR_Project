@@ -49,4 +49,6 @@
     <string name="delete_product_message">Вы уверены, что хотите удалить этот товар?</string>
     <string name="delete_order_message">Вы уверены, что хотите удалить этот заказ?</string>
     <string name="error_product_used">Этот товар нельзя удалить, т.к. он уже используется в заказе</string>
+    <string name="orders_empty_text">Нет активных заказов</string>
+    <string name="products_empty_text">Создайте товар</string>
 </resources>

@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
 import com.srproject.R
 
 @BindingAdapter("done")
@@ -94,3 +95,9 @@ fun TextView.setFilterSelected(selected: Boolean) {
         context.getDrawable(R.drawable.filter_item_unselect_bg)
     }
 }
+
+@BindingConversion
+fun convertBooleanToVisibility(visible: Boolean): Int {
+    return if (visible) View.VISIBLE else View.GONE
+}
+

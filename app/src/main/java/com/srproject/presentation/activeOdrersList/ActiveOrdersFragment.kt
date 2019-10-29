@@ -60,7 +60,7 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
                 findNavController().navigate(ActiveOrdersFragmentDirections.actionToSettings())
             }
             R.id.item_menu_history -> {
-
+                findNavController().navigate(ActiveOrdersFragmentDirections.actionToHistory())
             }
         }
         return super.onOptionsItemSelected(item)

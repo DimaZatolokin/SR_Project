@@ -33,6 +33,10 @@
         <action
             android:id="@+id/actionToProducts"
             app:destination="@id/fragmentProducts" />
+
+        <action
+            android:id="@+id/actionToHistory"
+            app:destination="@id/fragmentHistory" />
     </fragment>
 
     <fragment
@@ -117,6 +121,20 @@
         <argument
             android:name="id"
             app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentHistory"
+        android:name="com.srproject.presentation.history.HistoryFragment"
+        android:label="@string/history_title">
+        <action
+            android:id="@+id/actionToOrderDetails"
+            app:destination="@id/fragmentOrderDetails">
+
+            <argument
+                android:name="id"
+                app:argType="long" />
+        </action>
     </fragment>
 
 </navigation>

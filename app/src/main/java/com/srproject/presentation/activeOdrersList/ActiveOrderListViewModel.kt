@@ -10,7 +10,7 @@ import com.srproject.presentation.BaseViewModel
 class ActiveOrderListViewModel(application: Application, repository: Repository) :
     BaseViewModel(application, repository), ActiveOrderClickListener {
 
-    val adapter = OrdersAdapter(this)
+    val adapter = ActiveOrdersAdapter(this)
     private val useCase = GetActiveOrdersUseCase(repository)
     val navigateToDetailsEvent = SingleLiveEvent<Long>()
     val filtersVisible = ObservableBoolean()

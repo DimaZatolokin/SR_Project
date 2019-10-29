@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.srproject.R
-import com.srproject.databinding.ItemOrderBinding
+import com.srproject.databinding.ItemActiveOrderBinding
 import com.srproject.presentation.models.OrderUI
 
-class OrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
-    RecyclerView.Adapter<OrdersAdapter.VH>() {
+class ActiveOrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
+    RecyclerView.Adapter<ActiveOrdersAdapter.VH>() {
 
     var items = emptyList<OrderUI>()
         set(value) {
@@ -18,10 +18,10 @@ class OrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val binding: ItemOrderBinding =
+        val binding: ItemActiveOrderBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_order,
+                R.layout.item_active_order,
                 parent,
                 false
             )
@@ -34,7 +34,7 @@ class OrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
         holder.bind(items[position])
     }
 
-    inner class VH(private val binding: ItemOrderBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: ItemActiveOrderBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(order: OrderUI) {
             binding.model = order

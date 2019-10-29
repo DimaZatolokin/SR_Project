@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import com.srproject.R
+import com.srproject.presentation.models.OrderUI
 
 @BindingAdapter("done")
 fun TextView.setOrderDone(done: Boolean) {
@@ -69,6 +70,33 @@ fun TextView.setPaid(paid: Boolean) {
             null
         )
     }
+}
+
+@BindingAdapter("active")
+fun TextView.setActive(active: Boolean) {
+    if (active) {
+        text = context.getString(R.string.not_given)
+        setCompoundDrawablesWithIntrinsicBounds(
+            context.getDrawable(R.drawable.ic_red_cross),
+            null,
+            null,
+            null
+        )
+    } else {
+        text = context.getString(R.string.given)
+        setCompoundDrawablesWithIntrinsicBounds(
+            context.getDrawable(R.drawable.ic_checkmark),
+            null,
+            null,
+            null
+        )
+    }
+}
+
+@BindingAdapter("price")
+fun TextView.setPrice(order: OrderUI) {
+    val price = if (order.price > 0) order.price else order.calculatedPrice
+    text = String.format(context.getString(R.string.price), price)
 }
 
 @BindingAdapter("selectedPositionItem")

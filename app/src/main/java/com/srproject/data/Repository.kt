@@ -22,6 +22,10 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().getActiveOrders()
     }
 
+    suspend fun getAllOrders(): LiveData<List<Order>> {
+        return dbStorage.getOrdersDao().getAllOrders()
+    }
+
     suspend fun getProductById(id: Long): Product? {
         return dbStorage.getProductDao().getProductById(id)
     }

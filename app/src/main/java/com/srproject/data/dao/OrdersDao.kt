@@ -16,7 +16,7 @@ abstract class OrdersDao {
         }
     }
 
-    @Query("SELECT * FROM `Order`")
+    @Query("SELECT * FROM `Order` ORDER BY dateCreated")
     abstract fun getAllOrders(): LiveData<List<Order>>
 
     @Query("SELECT * FROM `Order` WHERE active == 1 ORDER BY dueDate")

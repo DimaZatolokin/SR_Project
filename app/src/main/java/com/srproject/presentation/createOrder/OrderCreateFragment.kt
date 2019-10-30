@@ -40,7 +40,7 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
                     })
             })
             showErrorCommand.observe(this@OrderCreateFragment, androidx.lifecycle.Observer {
-                val message = when(it) {
+                val message = when (it) {
                     Errors.CONSUMER -> getString(R.string.error_empty_consumer)
                     Errors.DUE_DATE -> getString(R.string.error_empty_due_date)
                     Errors.POSITIONS -> getString(R.string.error_empty_positions)

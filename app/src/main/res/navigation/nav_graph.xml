@@ -37,6 +37,10 @@
         <action
             android:id="@+id/actionToHistory"
             app:destination="@id/fragmentHistory" />
+
+        <action
+            android:id="@+id/actionToStatistics"
+            app:destination="@id/fragmentStatistics" />
     </fragment>
 
     <fragment
@@ -136,5 +140,10 @@
                 app:argType="long" />
         </action>
     </fragment>
+
+    <fragment
+        android:id="@+id/fragmentStatistics"
+        android:name="com.srproject.presentation.statistics.StatisticsFragment"
+        android:label="@string/statistics_title" />
 
 </navigation>

@@ -36,4 +36,7 @@ abstract class OrdersDao {
 
     @Query("DELETE FROM `Order` WHERE id == :id")
     abstract fun deleteOrder(id: Long)
+
+    @Query("SELECT SUM(price) FROM `Order`")
+    abstract fun getTotalSentSum(): Int
 }

@@ -28,6 +28,10 @@
                 android:title="@string/menu_history" />
 
             <item
+                android:id="@+id/item_menu_statistics"
+                android:title="@string/menu_statistics" />
+
+            <item
                 android:id="@+id/item_menu_settings"
                 android:title="@string/menu_settings" />
         </menu>

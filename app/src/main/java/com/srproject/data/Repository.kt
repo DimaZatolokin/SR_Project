@@ -82,6 +82,10 @@ class Repository private constructor(
         }
     }
 
+    suspend fun getTotalSentSum(): Int {
+        return dbStorage.getOrdersDao().getTotalSentSum()
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null

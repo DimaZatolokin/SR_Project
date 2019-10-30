@@ -61,7 +61,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
             val orderUI = OrderUI(
                 null,
                 consumer.get()!!,
-                if (realPrice.get().isNullOrEmpty()) 0 else realPrice.get()!!.toInt(),
+                if (realPrice.get().isNullOrEmpty()) calculatedPrice.get()!!.toInt() else realPrice.get()!!.toInt(),
                 paid.get(),
                 done.get(),
                 active.get(),

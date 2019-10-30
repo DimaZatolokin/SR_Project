@@ -56,6 +56,7 @@
     <string name="not_given">Не отдан</string>
     <string name="given">Отдан</string>
     <string name="date_created">Создан: %s</string>
+    <string name="due_date">Отдать: %s</string>
     <string name="menu_statistics">Статистика</string>
     <string name="statistics_title">Статистика</string>
     <string name="total_sent">Всего продано на сумму:</string>

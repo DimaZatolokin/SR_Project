@@ -77,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:adapter="@{viewModel.adapter}"
+            android:visibility="@{!viewModel.noItems}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutFilter" />
@@ -93,11 +94,5 @@
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <androidx.constraintlayout.widget.Group
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{!viewModel.noItems}"
-            app:constraint_referenced_ids="fbEdit,rvActiveOrders" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

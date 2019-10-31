@@ -51,7 +51,7 @@ class ActiveOrdersFragment : BaseFragment<FragmentActiveOrdersBinding>(),
                 viewModel.filterClicked()
             }
             R.id.item_menu_consumers -> {
-
+                findNavController().navigate(ActiveOrdersFragmentDirections.actionToConsumers())
             }
             R.id.item_menu_products -> {
                 findNavController().navigate(ActiveOrdersFragmentDirections.actionToProducts())

@@ -41,6 +41,10 @@
         <action
             android:id="@+id/actionToStatistics"
             app:destination="@id/fragmentStatistics" />
+
+        <action
+            android:id="@+id/actionToConsumers"
+            app:destination="@id/fragmentConsumers" />
     </fragment>
 
     <fragment
@@ -145,5 +149,10 @@
         android:id="@+id/fragmentStatistics"
         android:name="com.srproject.presentation.statistics.StatisticsFragment"
         android:label="@string/statistics_title" />
+
+    <fragment
+        android:id="@+id/fragmentConsumers"
+        android:name="com.srproject.presentation.consumers.ConsumersFragment"
+        android:label="@string/consumers_title" />
 
 </navigation>

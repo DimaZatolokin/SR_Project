@@ -61,4 +61,6 @@
     <string name="statistics_title">Статистика</string>
     <string name="total_sent">Всего продано на сумму:</string>
     <string name="you_cant_create_order">Для того, что бы иметь возможность создать новый заказ, сначала создайте хотя бы один товар</string>
+    <string name="consumers_title">Заказчики</string>
+    <string name="no_consumers">Пока нет заказчиков</string>
 </resources>

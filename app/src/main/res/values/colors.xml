@@ -8,4 +8,5 @@
     <color name="colorPurpleLight">#FFC5E9</color>
     <color name="colorLightGray">#EEEEEE</color>
     <color name="colorBlueGentle">#C3F1FF</color>
+    <color name="colorSemiTransparent">#DD000000</color>
 </resources>

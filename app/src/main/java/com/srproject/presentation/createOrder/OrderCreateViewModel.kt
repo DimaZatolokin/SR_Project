@@ -2,7 +2,6 @@ package com.srproject.presentation.createOrder
 
 import android.app.Application
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.viewModelScope
 import com.srproject.common.BaseOrderInfoViewModel
 import com.srproject.common.SingleLiveEvent
 import com.srproject.common.toReadableDate
@@ -20,7 +19,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
     private val createOrderUseCase = CreateOrderUseCase(repository)
     val navigateBackCommand = SingleLiveEvent<Unit>()
     val showExitDialogCommand = SingleLiveEvent<Unit>()
-    val isAddPositionButtonEnabled = ObservableBoolean()
+    val isAvailableProducts = ObservableBoolean()
 
     fun start() {
         dateCreated.set(System.currentTimeMillis().toReadableDate())
@@ -28,7 +27,7 @@ class OrderCreateViewModel(application: Application, repository: Repository) :
         calculatedPrice.set(0.toString())
         getProductsUseCase.obtainProducts { products ->
             adapter.products = products
-            isAddPositionButtonEnabled.set(products.isNotEmpty())
+            isAvailableProducts.set(products.isNotEmpty())
         }
     }
 

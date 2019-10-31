@@ -296,7 +296,7 @@
                     android:layout_marginBottom="26dp"
                     android:background="@drawable/bg_add_position_button"
                     android:drawableLeft="@drawable/ic_add_black"
-                    android:enabled="@{viewModel.isAddPositionButtonEnabled}"
+                    android:enabled="@{viewModel.isAvailableProducts}"
                     android:onClick="@{()->listener.onAddPositionClick()}"
                     android:paddingEnd="5dp"
                     android:text="@string/add_position"
@@ -317,8 +317,29 @@
             android:backgroundTint="@color/colorBlueLight"
             android:onClick="@{()->listener.onSaveClick()}"
             android:src="@drawable/ic_save"
+            android:visibility="@{viewModel.isAvailableProducts}"
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorSemiTransparent"
+            android:clickable="true"
+            android:visibility="@{!viewModel.isAvailableProducts}" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:text="@string/you_cant_create_order"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:visibility="@{!viewModel.isAvailableProducts}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

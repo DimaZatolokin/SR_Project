@@ -39,4 +39,14 @@ abstract class OrdersDao {
 
     @Query("SELECT SUM(price) FROM `Order`")
     abstract fun getTotalSentSum(): Int
+
+    @Query("SELECT * FROM `Order` WHERE active == 1 AND done == 0 ORDER BY dueDate")
+    abstract fun getNotDoneActiveOrders(): LiveData<List<Order>>
+
+    @Query("SELECT * FROM `Order` WHERE active == 1 AND paid == 0 ORDER BY dueDate")
+    abstract fun getNotPaidActiveOrders(): LiveData<List<Order>>
+
+    @Query("SELECT * FROM `Order` WHERE active == 1 AND paid == 0 AND done == 0 ORDER BY dueDate")
+    abstract fun getNotPaidAndNotDoneActiveOrders(): LiveData<List<Order>>
+
 }

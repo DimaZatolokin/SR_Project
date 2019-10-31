@@ -86,6 +86,13 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().getTotalSentSum()
     }
 
+    fun getFilteredOrders(notDone: Boolean, notPaid: Boolean): LiveData<List<Order>> {
+        return if (notDone && notPaid) dbStorage.getOrdersDao().getNotPaidAndNotDoneActiveOrders()
+        else if (notDone) dbStorage.getOrdersDao().getNotDoneActiveOrders()
+        else if (notPaid) dbStorage.getOrdersDao().getNotPaidActiveOrders()
+        else dbStorage.getOrdersDao().getActiveOrders()
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null

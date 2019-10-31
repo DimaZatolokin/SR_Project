@@ -1,10 +1,12 @@
 package com.srproject.presentation
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -43,6 +45,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
         setupViews()
         setupViewModel()
         setupToolbar()
+        hideKeyboard()
     }
 
     protected fun showQuestionDialog(
@@ -61,5 +64,18 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
                 actionDecline.invoke()
             }
         }.show()
+    }
+
+    protected fun hideKeyboard() {
+        context?.let {
+            val imm = it.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            //Find the currently focused view, so we can grab the correct window token from it.
+            var view = activity?.currentFocus
+            //If no view currently has focus, create a new one, just so we can grab a window token from it
+            if (view == null) {
+                view = View(it)
+            }
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }

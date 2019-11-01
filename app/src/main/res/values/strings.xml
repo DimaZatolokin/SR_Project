@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SR Project</string>
+    <string name="app_name">Sweety Reety</string>
     <string name="menu_settings">Настройки</string>
     <string name="active_orders_title">Текущие заказы</string>
     <string name="order_details_title">Детали заказа</string>

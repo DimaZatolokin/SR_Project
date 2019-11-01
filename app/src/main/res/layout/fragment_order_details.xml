@@ -61,7 +61,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@id/tvConsumerText"
-                    app:layout_constraintTop_toBottomOf="@id/tvConsumerText" />
+                    app:layout_constraintTop_toBottomOf="@id/tvConsumer" />
 
                 <TextView
                     android:id="@+id/tvDateCreate"

@@ -40,12 +40,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/tvConsumer"
+                    android:id="@+id/etConsumer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:hint="@string/input_consumer"
-                    android:maxLines="1"
                     android:text="@={viewModel.consumer}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
@@ -63,7 +62,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@id/tvConsumerText"
-                    app:layout_constraintTop_toBottomOf="@id/tvConsumerText" />
+                    app:layout_constraintTop_toBottomOf="@id/etConsumer" />
 
                 <EditText
                     android:id="@+id/tvDateCreate"

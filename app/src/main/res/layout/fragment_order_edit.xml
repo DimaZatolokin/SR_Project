@@ -40,7 +40,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/tvConsumer"
+                    android:id="@+id/etConsumer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@id/tvConsumerText"
-                    app:layout_constraintTop_toBottomOf="@id/tvConsumerText" />
+                    app:layout_constraintTop_toBottomOf="@id/etConsumer" />
 
                 <EditText
                     android:id="@+id/tvDateCreate"

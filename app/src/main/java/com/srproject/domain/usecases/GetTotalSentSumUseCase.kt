@@ -9,7 +9,7 @@ class GetTotalSentSumUseCase(private val repository: Repository) : BaseUseCase()
 
     fun getTotalSentSum(action: (Int) -> Unit) {
         launch {
-            val sum = repository.getTotalSentSum()
+            val sum = repository.getTotalSoldSum()
             withContext(Dispatchers.Main) {
                 action.invoke(sum)
             }

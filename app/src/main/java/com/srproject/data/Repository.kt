@@ -82,8 +82,8 @@ class Repository private constructor(
         }
     }
 
-    suspend fun getTotalSentSum(): Int {
-        return dbStorage.getOrdersDao().getTotalSentSum()
+    suspend fun getTotalSoldSum(): Int {
+        return dbStorage.getOrdersDao().getTotalSoldSum()
     }
 
     suspend fun getFilteredOrders(notDone: Boolean, notPaid: Boolean): LiveData<List<Order>> {
@@ -95,6 +95,14 @@ class Repository private constructor(
 
     suspend fun getConsumers(): List<String> {
         return dbStorage.getOrdersDao().getAllConsumers()
+    }
+
+    suspend fun getOrdersByConsumer(name: String): List<Order> {
+        return dbStorage.getOrdersDao().getOrdersByConsumer(name)
+    }
+
+    suspend fun getConsumerOrdersSum(name: String): Int {
+        return dbStorage.getOrdersDao().getConsumerOrdersSum(name)
     }
 
     companion object {

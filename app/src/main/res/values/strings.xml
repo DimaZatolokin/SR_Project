@@ -63,4 +63,6 @@
     <string name="you_cant_create_order">Для того, что бы иметь возможность создать новый заказ, сначала создайте хотя бы один товар</string>
     <string name="consumers_title">Заказчики</string>
     <string name="no_consumers">Пока нет заказчиков</string>
+    <string name="consumer_details_title">Информация о заказчике</string>
+    <string name="consumer_orders_sum">Всего заказов на сумму:</string>
 </resources>

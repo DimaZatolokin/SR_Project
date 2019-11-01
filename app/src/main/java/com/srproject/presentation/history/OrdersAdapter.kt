@@ -9,7 +9,7 @@ import com.srproject.databinding.ItemOrderBinding
 import com.srproject.presentation.activeOdrersList.OrdersPositionsAdapter
 import com.srproject.presentation.models.OrderUI
 
-class OrdersAdapter(private val orderClickListener: OrderClickListener) :
+class OrdersAdapter(private val orderClickListener: OrderClickListener?) :
     RecyclerView.Adapter<OrdersAdapter.VH>() {
 
     var items = emptyList<OrderUI>()
@@ -41,7 +41,7 @@ class OrdersAdapter(private val orderClickListener: OrderClickListener) :
             binding.model = order
             binding.rvPositions.adapter = OrdersPositionsAdapter(order.positions)
             binding.root.setOnClickListener {
-                orderClickListener.onOrderClick(order.id!!)
+                orderClickListener?.onOrderClick(order.id!!)
             }
         }
     }

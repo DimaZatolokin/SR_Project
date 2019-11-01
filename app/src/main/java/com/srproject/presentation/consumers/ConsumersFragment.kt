@@ -1,6 +1,7 @@
 package com.srproject.presentation.consumers
 
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.srproject.R
 import com.srproject.common.obtainViewModel
 import com.srproject.databinding.FragmentConsumersBinding
@@ -24,7 +25,7 @@ class ConsumersFragment : BaseFragment<FragmentConsumersBinding>() {
         viewModel.apply {
             start()
             navigateToConsumerDetailsCommand.observe(this@ConsumersFragment, Observer {
-
+                findNavController().navigate(ConsumersFragmentDirections.actionToConsumerDetails(it))
             })
         }
     }

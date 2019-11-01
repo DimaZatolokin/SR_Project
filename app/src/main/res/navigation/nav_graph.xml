@@ -153,6 +153,25 @@
     <fragment
         android:id="@+id/fragmentConsumers"
         android:name="com.srproject.presentation.consumers.ConsumersFragment"
-        android:label="@string/consumers_title" />
+        android:label="@string/consumers_title">
+
+        <action
+            android:id="@+id/actionToConsumerDetails"
+            app:destination="@id/fragmentConsumerDetails">
+            <argument
+                android:name="name"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentConsumerDetails"
+        android:name="com.srproject.presentation.consumerDetails.ConsumerDetailsFragment"
+        android:label="@string/consumer_details_title">
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+
 
 </navigation>

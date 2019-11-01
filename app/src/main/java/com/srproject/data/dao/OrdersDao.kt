@@ -38,7 +38,10 @@ abstract class OrdersDao {
     abstract fun deleteOrder(id: Long)
 
     @Query("SELECT SUM(price) FROM `Order`")
-    abstract fun getTotalSentSum(): Int
+    abstract fun getTotalSoldSum(): Int
+
+    @Query("SELECT SUM(price) FROM `Order` WHERE consumer == :name")
+    abstract fun getConsumerOrdersSum(name: String): Int
 
     @Query("SELECT * FROM `Order` WHERE active == 1 AND done == 0 ORDER BY dueDate")
     abstract fun getNotDoneActiveOrders(): LiveData<List<Order>>
@@ -51,5 +54,8 @@ abstract class OrdersDao {
 
     @Query("SELECT DISTINCT(consumer) FROM `Order`")
     abstract fun getAllConsumers(): List<String>
+
+    @Query("SELECT * FROM `Order` WHERE consumer == :name ORDER BY dueDate")
+    abstract fun getOrdersByConsumer(name: String): List<Order>
 
 }

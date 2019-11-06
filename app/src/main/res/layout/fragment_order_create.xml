@@ -30,14 +30,63 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tvPositionsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/positions_list"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvConsumerText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPositions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:adapter="@{viewModel.adapter}"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tvPositionsText" />
+
+                <Button
+                    android:id="@+id/btnAddPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="26dp"
+                    android:background="@drawable/bg_add_position_button"
+                    android:drawableLeft="@drawable/ic_add_black"
+                    android:enabled="@{viewModel.isAvailableProducts}"
+                    android:onClick="@{()->listener.onAddPositionClick()}"
+                    android:paddingEnd="5dp"
+                    android:text="@string/add_position"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvPositions"
+                    app:layout_constraintVertical_bias="0" />
+
+                <View
+                    android:id="@+id/viewSeparator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toBottomOf="@id/btnAddPosition" />
+
+                <TextView
                     android:id="@+id/tvConsumerText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:text="@string/text_consumer"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/viewSeparator" />
 
                 <EditText
                     android:id="@+id/etConsumer"
@@ -259,54 +308,6 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@id/tvCommentText"
                     app:layout_constraintTop_toBottomOf="@id/tvCommentText" />
-
-                <View
-                    android:id="@+id/viewSeparator"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimaryDark"
-                    app:layout_constraintTop_toBottomOf="@id/tvComment" />
-
-                <TextView
-                    android:id="@+id/tvPositionsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/positions_list"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@id/tvConsumerText"
-                    app:layout_constraintTop_toBottomOf="@id/viewSeparator" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvPositions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:adapter="@{viewModel.adapter}"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/tvPositionsText" />
-
-                <Button
-                    android:id="@+id/btnAddPosition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="26dp"
-                    android:background="@drawable/bg_add_position_button"
-                    android:drawableLeft="@drawable/ic_add_black"
-                    android:enabled="@{viewModel.isAvailableProducts}"
-                    android:onClick="@{()->listener.onAddPositionClick()}"
-                    android:paddingEnd="5dp"
-                    android:text="@string/add_position"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvPositions"
-                    app:layout_constraintVertical_bias="0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

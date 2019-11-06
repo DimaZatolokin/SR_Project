@@ -65,4 +65,6 @@
     <string name="no_consumers">Пока нет заказчиков</string>
     <string name="consumer_details_title">Информация о заказчике</string>
     <string name="consumer_orders_sum">Всего заказов на сумму:</string>
+    <string name="position_progress">Готовность</string>
+    <string name="alert_done_clicked">Не все позиции готовы. Вы уверены, что хотите отметить этот заказ как полностью готов? Все позиции автоматически будут отмечены как готовы.</string>
 </resources>

@@ -34,7 +34,7 @@ class OrderCreatePositionsAdapter(private val updatePriceListener: UpdatePriceLi
 
     fun createNewItem() {
         if (products.isNotEmpty()) {
-            items.add(OrderPositionUI(null, products.first(), 0, -1))
+            items.add(OrderPositionUI(null, products.first(), 1, false, -1))
             notifyDataSetChanged()
         }
     }
@@ -54,6 +54,22 @@ class OrderCreatePositionsAdapter(private val updatePriceListener: UpdatePriceLi
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(items[position])
+    }
+
+    fun hasNotReadyPositions(): Boolean {
+        items.forEach {
+            if (!it.done) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun completeAllPositions() {
+        items.forEach {
+            it.done = true
+        }
+        notifyDataSetChanged()
     }
 
     inner class VH(private val binding: ItemOrderPositionCreateBinding) :
@@ -97,6 +113,10 @@ class OrderCreatePositionsAdapter(private val updatePriceListener: UpdatePriceLi
         fun bind(item: OrderPositionUI) {
             binding.model = item
             binding.amountPicker.value = item.amount
+            binding.imgProgress.setOnClickListener {
+                item.done = !item.done
+                notifyDataSetChanged()
+            }
         }
     }
 }

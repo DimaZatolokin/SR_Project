@@ -2,6 +2,7 @@ package com.srproject.common
 
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -28,6 +29,11 @@ fun TextView.setOrderDone(done: Boolean) {
             null
         )
     }
+}
+
+@BindingAdapter("positionDone")
+fun ImageView.setOrderPositionDone(done: Boolean) {
+    setImageDrawable(context.getDrawable(if (done) R.drawable.ic_done_green else R.drawable.ic_inprogress))
 }
 
 @BindingAdapter("status")

@@ -6,7 +6,6 @@ import com.srproject.R
 import com.srproject.common.obtainViewModel
 import com.srproject.databinding.FragmentOrderDetailsBinding
 import com.srproject.presentation.BaseFragment
-import com.srproject.presentation.activeOdrersList.OrdersItemDecorator
 
 class OrderDetailsFragment : BaseFragment<FragmentOrderDetailsBinding>(),
     OrderDetailsActionListener {
@@ -21,7 +20,7 @@ class OrderDetailsFragment : BaseFragment<FragmentOrderDetailsBinding>(),
     override fun setupBinding(binding: FragmentOrderDetailsBinding) {
         binding.viewModel = viewModel
         binding.listener = this
-        binding.rvPositions.addItemDecoration(OrdersItemDecorator())
+        binding.rvPositions.addItemDecoration(OrderPositionsDecorator())
     }
 
     override fun setupViewModel() {

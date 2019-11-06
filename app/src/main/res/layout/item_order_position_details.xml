@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -19,11 +20,11 @@
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_weight="3"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="4"
             android:text="@{model.product.name}"
             android:textColor="#442200"
-            android:textSize="22sp"
+            android:textSize="19sp"
             tools:text="Коробка конфет" />
 
         <TextView
@@ -31,12 +32,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            android:layout_marginEnd="14dp"
+            android:layout_marginEnd="5dp"
             android:text="@{@string/items(model.amount)}"
             android:textColor="#440000"
-            android:textSize="26sp"
+            android:textSize="22sp"
             android:textStyle="italic|bold"
             tools:text="4" />
+
+        <ImageView
+            android:id="@+id/imgProgress"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/position_progress"
+            android:scaleType="centerCrop"
+            app:positionDone="@{model.done}" />
 
     </LinearLayout>
 </layout>

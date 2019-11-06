@@ -33,6 +33,7 @@ data class OrderPosition(
     @PrimaryKey(autoGenerate = true) var id: Long? = null,
     var productId: Long = -1,
     var amount: Int = 0,
+    var done: Boolean,
     var orderId: Long? = null
 )
 

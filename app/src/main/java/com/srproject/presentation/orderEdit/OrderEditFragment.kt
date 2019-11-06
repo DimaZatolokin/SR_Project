@@ -53,6 +53,11 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
             navigateToMainScreenCommand.observe(this@OrderEditFragment, Observer {
                 findNavController().popBackStack(R.id.fragmentActiveOrders, false)
             })
+            showAlertDoneDialogCommand.observe(this@OrderEditFragment, Observer {
+                showQuestionDialog(message = getString(R.string.alert_done_clicked), actionAccept = {
+                    viewModel.checkOrderAsDone()
+                }, actionDecline = {})
+            })
         }
     }
 

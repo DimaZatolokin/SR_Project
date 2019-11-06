@@ -6,12 +6,12 @@ import com.srproject.data.models.Product
 
 fun mockPositions(): List<OrderPosition> {
     val positions = arrayListOf<OrderPosition>()
-    positions.add(OrderPosition(1, 1, 2, 1))
-    positions.add(OrderPosition(2, 2, 3, 1))
-    positions.add(OrderPosition(3, 3, 1, 1))
-    positions.add(OrderPosition(4, 1, 2, 1))
-    positions.add(OrderPosition(5, 2, 3, 1))
-    positions.add(OrderPosition(6, 3, 1, 1))
+    positions.add(OrderPosition(1, 1, 2, false, 1))
+    positions.add(OrderPosition(2, 2, 3, false, 1))
+    positions.add(OrderPosition(3, 3, 1, false, 1))
+    positions.add(OrderPosition(4, 1, 2, false, 1))
+    positions.add(OrderPosition(5, 2, 3, false, 1))
+    positions.add(OrderPosition(6, 3, 1, false, 1))
     return positions
 }
 

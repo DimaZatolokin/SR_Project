@@ -26,6 +26,7 @@ class OrderEditViewModel(application: Application, repository: Repository) :
     val isAddPositionButtonEnabled = ObservableBoolean()
     val showErrorCommand = SingleLiveEvent<Errors>()
     val showExitDialogCommand = SingleLiveEvent<Unit>()
+    val showAlertDoneDialogCommand = SingleLiveEvent<Unit>()
 
     fun start(id: Long) {
         getProductsUseCase.obtainProducts { products ->
@@ -100,7 +101,11 @@ class OrderEditViewModel(application: Application, repository: Repository) :
     }
 
     fun onDoneClicked() {
-        done.set(!done.get())
+        if (!done.get() && adapter.hasNotReadyPositions()) {
+            showAlertDoneDialogCommand.call()
+        } else {
+            done.set(!done.get())
+        }
     }
 
     fun onGivenClicked() {
@@ -128,6 +133,11 @@ class OrderEditViewModel(application: Application, repository: Repository) :
         getProductsUseCase.cancel()
         getOrderUseCase.cancel()
         updateOrderUseCase.cancel()
+    }
+
+    fun checkOrderAsDone() {
+        done.set(!done.get())
+        adapter.completeAllPositions()
     }
 }
 

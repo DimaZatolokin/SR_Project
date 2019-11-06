@@ -12,7 +12,13 @@ abstract class OrdersDao {
     open fun saveOrder(order: Order) {
         val idOrder = insertOrder(order)
         order.positions.forEach {
-            insertOrderPosition(it.apply { orderId = idOrder })
+            if (it.amount > 0) {
+                insertOrderPosition(it.apply { orderId = idOrder })
+            } else {
+                it.id?.run {
+                    deleteOrderPosition(this)
+                }
+            }
         }
     }
 
@@ -36,6 +42,9 @@ abstract class OrdersDao {
 
     @Query("DELETE FROM `Order` WHERE id == :id")
     abstract fun deleteOrder(id: Long)
+
+    @Query("DELETE FROM OrderPosition WHERE id == :id")
+    abstract fun deleteOrderPosition(id: Long)
 
     @Query("SELECT SUM(price) FROM `Order`")
     abstract fun getTotalSoldSum(): Int

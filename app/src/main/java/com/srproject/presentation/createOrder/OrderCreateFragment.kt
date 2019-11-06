@@ -60,6 +60,7 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
     }
 
     override fun onDateCreatedClick() {
+        hideKeyboard()
         activity?.run {
             val currentDateCreated = viewModel.dateCreated.get()!!.toTimeStamp()
             val calendar = Calendar.getInstance().apply {
@@ -78,6 +79,7 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
     }
 
     override fun onDueDateClick() {
+        hideKeyboard()
         activity?.run {
             val inputDate = viewModel.dueDate.get()
             val currentDueDate = inputDate?.toTimeStamp() ?: System.currentTimeMillis()
@@ -98,18 +100,22 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
     }
 
     override fun onPaidClick() {
+        hideKeyboard()
         viewModel.onPaidClicked()
     }
 
     override fun onDoneClick() {
+        hideKeyboard()
         viewModel.onDoneClicked()
     }
 
     override fun onGivenClick() {
+        hideKeyboard()
         viewModel.onGivenClicked()
     }
 
     override fun onAddPositionClick() {
+        hideKeyboard()
         viewModel.onAddPositionClicked()
     }
 

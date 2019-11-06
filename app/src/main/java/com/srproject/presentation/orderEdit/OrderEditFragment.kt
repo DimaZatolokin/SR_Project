@@ -54,24 +54,30 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
                 findNavController().popBackStack(R.id.fragmentActiveOrders, false)
             })
             showAlertDoneDialogCommand.observe(this@OrderEditFragment, Observer {
-                showQuestionDialog(message = getString(R.string.alert_done_clicked), actionAccept = {
-                    viewModel.checkOrderAsDone()
-                }, actionDecline = {})
+                showQuestionDialog(
+                    message = getString(R.string.alert_done_clicked),
+                    actionAccept = {
+                        viewModel.checkOrderAsDone()
+                    },
+                    actionDecline = {})
             })
         }
     }
 
     override fun onSaveClick() {
+        hideKeyboard()
         viewModel.onSaveClicked()
     }
 
     override fun onDeleteClick() {
+        hideKeyboard()
         showQuestionDialog(message = getString(R.string.delete_order_message), actionAccept = {
             viewModel.onDeleteClicked()
         }, actionDecline = {})
     }
 
     override fun onDateCreatedClick() {
+        hideKeyboard()
         activity?.run {
             val currentDateCreated = viewModel.dateCreated.get()!!.toTimeStamp()
             val calendar = Calendar.getInstance().apply {
@@ -90,6 +96,7 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
     }
 
     override fun onDueDateClick() {
+        hideKeyboard()
         activity?.run {
             val currentDueDate = viewModel.dueDate.get()!!.toTimeStamp()
             val calendar = Calendar.getInstance().apply {
@@ -109,18 +116,22 @@ class OrderEditFragment : BaseFragment<FragmentOrderEditBinding>(), OrderEditAct
     }
 
     override fun onPaidClick() {
+        hideKeyboard()
         viewModel.onPaidClicked()
     }
 
     override fun onDoneClick() {
+        hideKeyboard()
         viewModel.onDoneClicked()
     }
 
     override fun onGivenClick() {
+        hideKeyboard()
         viewModel.onGivenClicked()
     }
 
     override fun onAddPositionClick() {
+        hideKeyboard()
         viewModel.onAddPositionClicked()
     }
 

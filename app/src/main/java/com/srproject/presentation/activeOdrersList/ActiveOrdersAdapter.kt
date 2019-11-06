@@ -3,19 +3,24 @@ package com.srproject.presentation.activeOdrersList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.srproject.R
 import com.srproject.databinding.ItemActiveOrderBinding
 import com.srproject.presentation.models.OrderUI
+import kotlin.properties.Delegates
 
 class ActiveOrdersAdapter(private val orderClickListener: ActiveOrderClickListener) :
     RecyclerView.Adapter<ActiveOrdersAdapter.VH>() {
 
-    var items = emptyList<OrderUI>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    var items: List<OrderUI> by Delegates.observable(emptyList()) { _, oldList, newList ->
+        notifyChanges(oldList, newList)
+    }
+
+    private fun notifyChanges(oldList: List<OrderUI>, newList: List<OrderUI>) {
+        val diff = DiffUtil.calculateDiff(OrdersDiffUtils(oldList, newList))
+        diff.dispatchUpdatesTo(this)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding: ItemActiveOrderBinding =
@@ -34,7 +39,8 @@ class ActiveOrdersAdapter(private val orderClickListener: ActiveOrderClickListen
         holder.bind(items[position])
     }
 
-    inner class VH(private val binding: ItemActiveOrderBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(private val binding: ItemActiveOrderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(order: OrderUI) {
             binding.model = order

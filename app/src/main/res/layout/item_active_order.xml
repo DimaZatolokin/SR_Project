@@ -14,7 +14,7 @@
     <com.srproject.common.ClickInterceptableConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/colorLightGray"
+        android:background="@color/colorPurpleLight"
         android:elevation="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -43,7 +43,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorChocolate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{@string/price(model.price)}"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorChocolate"
             android:textSize="16sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@id/tvDate"
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:drawableStart="@drawable/ic_checkmark"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorChocolate"
             android:textSize="13sp"
             app:done="@{model.done}"
             app:layout_constraintBaseline_toBaselineOf="@id/tvPrice"

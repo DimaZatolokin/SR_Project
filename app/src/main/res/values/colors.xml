@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#442200</color>
+    <color name="colorChocolate">#442200</color>
+    <color name="colorPrimary">#FF6699</color>
     <color name="colorPrimaryDark">#440000</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlueLight">#0C5AFF</color>
     <color name="colorPurple">#9A2CFF</color>
-    <color name="colorPurpleLight">#FFC5E9</color>
+    <color name="colorPurpleLight">#FFECFE</color>
     <color name="colorLightGray">#EEEEEE</color>
     <color name="colorBlueGentle">#C3F1FF</color>
     <color name="colorSemiTransparent">#DD000000</color>

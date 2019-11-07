@@ -45,7 +45,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:text="@{@string/price(viewModel.sum)}"
-            android:textColor="@color/colorChocolate"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@id/tvSumText"

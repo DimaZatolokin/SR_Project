@@ -61,7 +61,7 @@ abstract class OrdersDao {
     @Query("SELECT * FROM `Order` WHERE active == 1 AND paid == 0 AND done == 0 ORDER BY dueDate")
     abstract fun getNotPaidAndNotDoneActiveOrders(): LiveData<List<Order>>
 
-    @Query("SELECT DISTINCT(consumer) FROM `Order`")
+    @Query("SELECT DISTINCT(consumer) FROM `Order` ORDER BY consumer")
     abstract fun getAllConsumers(): List<String>
 
     @Query("SELECT * FROM `Order` WHERE consumer == :name ORDER BY dueDate")

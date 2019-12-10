@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import com.srproject.R
 import com.srproject.presentation.models.OrderUI
+import java.util.*
 
 @BindingAdapter("done")
 fun TextView.setOrderDone(done: Boolean) {
@@ -133,5 +134,16 @@ fun TextView.setFilterSelected(selected: Boolean) {
 @BindingConversion
 fun convertBooleanToVisibility(visible: Boolean): Int {
     return if (visible) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("selectedDate")
+fun TextView.setSelectedDate(date: Date) {
+    val calendar = Calendar.getInstance()
+    calendar.time = date
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    month.getMonthNameRes()?.run {
+        text = "${context.getString(this)} $year"
+    }
 }
 

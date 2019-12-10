@@ -86,6 +86,14 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().getTotalSoldSum()
     }
 
+    suspend fun getTotalPaidSum(): Int {
+        return dbStorage.getOrdersDao().getTotalPaidSum()
+    }
+
+    suspend fun getSoldSumPerPeriod(startDate: Long, endDate: Long): Int {
+        return dbStorage.getOrdersDao().getSoldSumPerPeriod(startDate, endDate)
+    }
+
     suspend fun getFilteredOrders(notDone: Boolean, notPaid: Boolean): LiveData<List<Order>> {
         return if (notDone && notPaid) dbStorage.getOrdersDao().getNotPaidAndNotDoneActiveOrders()
         else if (notDone) dbStorage.getOrdersDao().getNotDoneActiveOrders()

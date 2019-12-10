@@ -49,6 +49,9 @@ abstract class OrdersDao {
     @Query("SELECT SUM(price) FROM `Order`")
     abstract fun getTotalSoldSum(): Int
 
+    @Query("SELECT SUM(price) FROM `Order` WHERE paid == 1")
+    abstract fun getTotalPaidSum(): Int
+
     @Query("SELECT SUM(price) FROM `Order` WHERE consumer == :name")
     abstract fun getConsumerOrdersSum(name: String): Int
 
@@ -67,4 +70,6 @@ abstract class OrdersDao {
     @Query("SELECT * FROM `Order` WHERE consumer == :name ORDER BY dueDate")
     abstract fun getOrdersByConsumer(name: String): List<Order>
 
+    @Query("SELECT SUM(price) FROM `Order` WHERE dateCreated >= :startDate AND dateCreated <= :endDate")
+    abstract fun getSoldSumPerPeriod(startDate: Long, endDate: Long): Int
 }

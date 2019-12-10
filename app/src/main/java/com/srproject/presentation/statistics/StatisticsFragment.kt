@@ -5,7 +5,7 @@ import com.srproject.common.obtainViewModel
 import com.srproject.databinding.FragmentStatisticsBinding
 import com.srproject.presentation.BaseFragment
 
-class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>() {
+class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>(), StatisticsActionListener {
 
     private val viewModel: StatisticsViewModel by lazy {
         obtainViewModel(StatisticsViewModel::class.java)
@@ -15,11 +15,20 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding>() {
 
     override fun setupBinding(binding: FragmentStatisticsBinding) {
         binding.viewModel = viewModel
+        binding.listener = this
     }
 
     override fun setupViewModel() {
         viewModel.apply {
             start()
         }
+    }
+
+    override fun onPreviousMonthClick() {
+        viewModel.onPreviousMonthClicked()
+    }
+
+    override fun onNextMonthClick() {
+        viewModel.onNextMonthClicked()
     }
 }

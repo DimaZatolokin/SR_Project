@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="listener"
+            type="com.srproject.presentation.statistics.StatisticsActionListener" />
 
         <variable
             name="viewModel"
@@ -30,12 +35,104 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{@string/price(viewModel.totalSent)}"
+            android:text="@{@string/price(viewModel.totalSold)}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             app:layout_constraintBaseline_toBaselineOf="@id/tvSentText"
-            app:layout_constraintStart_toEndOf="@id/tvSentText" />
+            app:layout_constraintStart_toEndOf="@id/tvSentText"
+            tools:text="1255 грн" />
 
+        <TextView
+            android:id="@+id/tvPaidSentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/total_paid_sent"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/tvSentText"
+            app:layout_constraintTop_toBottomOf="@id/tvSentText" />
+
+        <TextView
+            android:id="@+id/tvPaidSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{@string/price(viewModel.totalPaid)}"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="22sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvPaidSentText"
+            app:layout_constraintStart_toEndOf="@id/tvPaidSentText"
+            tools:text="1200 грн" />
+
+        <TextView
+            android:id="@+id/tvPerMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/per_month"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPaidSentText" />
+
+        <TextView
+            android:id="@+id/tvSelectedMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPerMonth"
+            app:selectedDate="@{viewModel.date}"
+            tools:text="Январь 2019" />
+
+        <ImageView
+            android:id="@+id/imgPreviousMonth"
+            android:layout_width="@dimen/month_select_image_btn_size"
+            android:layout_height="@dimen/month_select_image_btn_size"
+            android:onClick="@{v -> listener.onPreviousMonthClick()}"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectedMonth"
+            app:layout_constraintEnd_toStartOf="@id/tvSelectedMonth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSelectedMonth" />
+
+        <ImageView
+            android:id="@+id/imgNextMonth"
+            android:layout_width="@dimen/month_select_image_btn_size"
+            android:layout_height="@dimen/month_select_image_btn_size"
+            android:onClick="@{v -> listener.onNextMonthClick()}"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectedMonth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvSelectedMonth"
+            app:layout_constraintTop_toTopOf="@id/tvSelectedMonth" />
+
+        <TextView
+            android:id="@+id/tvMonthlySoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/monthly_sold_sum"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectedMonth" />
+
+        <TextView
+            android:id="@+id/tvMonthlySold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{@string/price(viewModel.monthlySold)}"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="22sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvMonthlySoldText"
+            app:layout_constraintStart_toEndOf="@id/tvMonthlySoldText"
+            tools:text="1255 грн" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

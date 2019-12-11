@@ -54,6 +54,30 @@
                     tools:text="$ffgg_rttt34" />
 
                 <TextView
+                    android:id="@+id/tvNumberText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/order_number"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/tvNumberText"
+                    app:layout_constraintTop_toBottomOf="@id/tvConsumerText" />
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{String.valueOf(viewModel.number)}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvNumberText"
+                    app:layout_constraintStart_toEndOf="@id/tvNumberText"
+                    tools:text="331" />
+
+                <TextView
                     android:id="@+id/tvDateCreateText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,8 +85,8 @@
                     android:text="@string/text_date_created"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@id/tvConsumerText"
-                    app:layout_constraintTop_toBottomOf="@id/tvConsumer" />
+                    app:layout_constraintStart_toStartOf="@id/tvNumberText"
+                    app:layout_constraintTop_toBottomOf="@id/tvNumberText" />
 
                 <TextView
                     android:id="@+id/tvDateCreate"

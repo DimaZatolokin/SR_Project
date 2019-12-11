@@ -23,6 +23,7 @@ class OrderDetailsViewModel(application: Application, repository: Repository) :
                 this@OrderDetailsViewModel.active.set(active)
                 this@OrderDetailsViewModel.paid.set(paid)
                 this@OrderDetailsViewModel.comment.set(comment)
+                this@OrderDetailsViewModel.number.set(id)
                 adapter.items = this.positions
             }
         }

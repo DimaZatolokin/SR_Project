@@ -4,6 +4,7 @@
     <string name="active_orders_title">Текущие заказы</string>
     <string name="order_details_title">Детали заказа</string>
     <string name="text_consumer">Заказчик:</string>
+    <string name="order_number">Номер заказа:</string>
     <string name="text_due_date">Отдать:</string>
     <string name="text_real_price">Установленная цена:</string>
     <string name="text_default_price">Рекомендуемая цена:</string>

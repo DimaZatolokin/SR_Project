@@ -3,6 +3,7 @@ package com.srproject.common
 import android.app.Application
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.databinding.ObservableLong
 import com.srproject.data.Repository
 import com.srproject.presentation.BaseViewModel
 
@@ -18,4 +19,5 @@ abstract class BaseOrderInfoViewModel(application: Application, repository: Repo
     val done = ObservableBoolean()
     val active = ObservableBoolean()
     val paid = ObservableBoolean()
+    val number = ObservableLong()
 }

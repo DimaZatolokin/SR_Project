@@ -6,26 +6,35 @@ import androidx.databinding.ObservableInt
 import com.srproject.common.nextMonth
 import com.srproject.common.previousMonth
 import com.srproject.data.Repository
-import com.srproject.domain.usecases.GetSoldSumUseCase
+import com.srproject.domain.usecases.GetStatisticsUseCase
 import com.srproject.presentation.BaseViewModel
 import java.util.*
 
 class StatisticsViewModel(application: Application, repository: Repository) :
     BaseViewModel(application, repository) {
 
-    private val getSoldSumUseCase = GetSoldSumUseCase(repository)
+    private val getStatisticsUseCase = GetStatisticsUseCase(repository)
     val totalSold = ObservableInt()
     val totalPaid = ObservableInt()
     val date = ObservableField<Date>()
     val monthlySold = ObservableInt()
+    val monthlyOrders = ObservableInt()
+    val totalOrdersAmount = ObservableInt()
+    val activeOrdersAmount = ObservableInt()
 
     fun start() {
-        getSoldSumUseCase.apply {
+        getStatisticsUseCase.apply {
             getTotalSoldSum {
                 totalSold.set(it)
             }
             getTotalPaidSum {
                 totalPaid.set(it)
+            }
+            getOrdersAmount {
+                totalOrdersAmount.set(it)
+            }
+            getActiveOrdersAmount {
+                activeOrdersAmount.set(it)
             }
         }
         date.set(Date(System.currentTimeMillis()))
@@ -44,8 +53,13 @@ class StatisticsViewModel(application: Application, repository: Repository) :
 
     private fun setCurrentMonthlySold() {
         date.get()?.run {
-            getSoldSumUseCase.getSoldSumPerMonth(this) {
-                monthlySold.set(it)
+            getStatisticsUseCase.let { useCase ->
+                useCase.getSoldSumPerMonth(this) {
+                    monthlySold.set(it)
+                }
+                useCase.getOrdersAmountBerMonth(this) {
+                    monthlyOrders.set(it)
+                }
             }
         }
     }

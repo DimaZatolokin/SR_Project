@@ -72,4 +72,13 @@ abstract class OrdersDao {
 
     @Query("SELECT SUM(price) FROM `Order` WHERE dateCreated >= :startDate AND dateCreated <= :endDate")
     abstract fun getSoldSumPerPeriod(startDate: Long, endDate: Long): Int
+
+    @Query("SELECT COUNT() FROM `Order` WHERE dateCreated >= :startDate AND dateCreated <= :endDate")
+    abstract fun getOrdersAmountPerPeriod(startDate: Long, endDate: Long): Int
+
+    @Query("SELECT COUNT() FROM `Order`")
+    abstract fun getTotalOrdersAmount(): Int
+
+    @Query("SELECT COUNT() FROM `Order` WHERE active == 1")
+    abstract fun getActiveOrdersAmount(): Int
 }

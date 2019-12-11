@@ -60,7 +60,7 @@
     <string name="menu_statistics">Статистика</string>
     <string name="statistics_title">Статистика</string>
     <string name="total_sent">Всего продано на сумму:</string>
-    <string name="total_paid_sent">Оплачено товаров на сумму:</string>
+    <string name="total_paid_sent">Оплачено на сумму:</string>
     <string name="you_cant_create_order">Для того, что бы иметь возможность создать новый заказ, сначала создайте хотя бы один товар. Для этого на главном экране выберите пункт Меню/Товары</string>
     <string name="consumers_title">Заказчики</string>
     <string name="no_consumers">Пока нет заказчиков</string>
@@ -82,4 +82,7 @@
     <string name="december">Декабрь</string>
     <string name="per_month">Помесячно:</string>
     <string name="monthly_sold_sum">Продано на сумму:</string>
+    <string name="monthly_orders">Заказов:</string>
+    <string name="orders_amount">Всего заказов:</string>
+    <string name="active_orders_amount">Активных заказов:</string>
 </resources>

@@ -94,6 +94,10 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().getSoldSumPerPeriod(startDate, endDate)
     }
 
+    suspend fun getOrdersAmountPerPeriod(startDate: Long, endDate: Long): Int {
+        return dbStorage.getOrdersDao().getOrdersAmountPerPeriod(startDate, endDate)
+    }
+
     suspend fun getFilteredOrders(notDone: Boolean, notPaid: Boolean): LiveData<List<Order>> {
         return if (notDone && notPaid) dbStorage.getOrdersDao().getNotPaidAndNotDoneActiveOrders()
         else if (notDone) dbStorage.getOrdersDao().getNotDoneActiveOrders()
@@ -111,6 +115,14 @@ class Repository private constructor(
 
     suspend fun getConsumerOrdersSum(name: String): Int {
         return dbStorage.getOrdersDao().getConsumerOrdersSum(name)
+    }
+
+    fun getOrdersAmount(): Int {
+        return dbStorage.getOrdersDao().getTotalOrdersAmount()
+    }
+
+    fun getActiveOrdersAmount(): Int {
+        return dbStorage.getOrdersDao().getActiveOrdersAmount()
     }
 
     companion object {

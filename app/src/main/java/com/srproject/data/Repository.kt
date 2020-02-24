@@ -1,6 +1,9 @@
 package com.srproject.data
 
 import androidx.lifecycle.LiveData
+import com.srproject.data.datasource.local.db.AppDataBase
+import com.srproject.data.datasource.local.prefs.PreferencesDataSource
+import com.srproject.data.datasource.network.NetworkDataSource
 import com.srproject.data.models.Order
 import com.srproject.data.models.OrderPosition
 import com.srproject.data.models.Product
@@ -10,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class Repository private constructor(
     private val dbStorage: AppDataBase,
-    private val preferences: PreferencesDataSource
+    private val preferences: PreferencesDataSource,
+    private val networkDataSource: NetworkDataSource
 ) : CoroutineScope {
 
     override val coroutineContext = Dispatchers.Default
@@ -117,12 +121,28 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().getConsumerOrdersSum(name)
     }
 
-    fun getOrdersAmount(): Int {
+    suspend fun getOrdersAmount(): Int {
         return dbStorage.getOrdersDao().getTotalOrdersAmount()
     }
 
-    fun getActiveOrdersAmount(): Int {
+    suspend fun getActiveOrdersAmount(): Int {
         return dbStorage.getOrdersDao().getActiveOrdersAmount()
+    }
+
+    suspend fun sendOrdersToServer(): ResultObject<Unit> {
+        return networkDataSource.sendOrders(dbStorage.getOrdersDao().getAllOrdersList())
+    }
+
+    suspend fun sendOrdersPositionsToServer(): ResultObject<Unit> {
+        return networkDataSource.sendOrderPositions(dbStorage.getOrdersDao().getAllOrderPositions())
+    }
+
+    suspend fun sendProductsToServer(): ResultObject<Unit> {
+        return networkDataSource.sendProducts(dbStorage.getProductDao().getProductsList())
+    }
+
+    fun loadOrdersFromServer() {
+
     }
 
     companion object {
@@ -131,10 +151,11 @@ class Repository private constructor(
 
         fun init(
             dbStorage: AppDataBase,
-            preferences: PreferencesDataSource
+            preferences: PreferencesDataSource,
+            nwDataSource: NetworkDataSource
         ) {
             if (INSTANCE == null) {
-                INSTANCE = Repository(dbStorage, preferences)
+                INSTANCE = Repository(dbStorage, preferences, nwDataSource)
             }
         }
 

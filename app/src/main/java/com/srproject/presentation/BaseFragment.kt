@@ -52,7 +52,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
         title: String = getString(R.string.dialog_title),
         message: String,
         actionAccept: () -> Unit,
-        actionDecline: () -> Unit
+        actionDecline: () -> Unit = {}
     ) {
         AlertDialog.Builder(context).apply {
             setTitle(title)

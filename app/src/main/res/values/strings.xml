@@ -86,4 +86,8 @@
     <string name="monthly_orders">Заказов:</string>
     <string name="orders_amount">Всего заказов:</string>
     <string name="active_orders_amount">Активных заказов:</string>
+    <string name="sync">Синхронизировать</string>
+    <string name="sync_error">Ошибка при загрузке данных на сервер. Попробуйте позже.</string>
+    <string name="keep_data_remote">Сохранить все данные в облако</string>
+    <string name="sync_dialog_message">Все ваши данные будут сохранены в облако. Если в облаке уже хранятся ваши данные, то они будут перезатёрты. Начать загрузку данных в облако?</string>
 </resources>

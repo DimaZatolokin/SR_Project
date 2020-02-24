@@ -1,4 +1,4 @@
-package com.srproject.data.dao
+package com.srproject.data.datasource.local.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -25,11 +25,17 @@ abstract class OrdersDao {
     @Query("SELECT * FROM `Order` ORDER BY dateCreated")
     abstract fun getAllOrders(): LiveData<List<Order>>
 
+    @Query("SELECT * FROM `Order` ORDER BY dateCreated")
+    abstract fun getAllOrdersList(): List<Order>
+
     @Query("SELECT * FROM `Order` WHERE active == 1 ORDER BY dueDate")
     abstract fun getActiveOrders(): LiveData<List<Order>>
 
     @Query("SELECT * FROM OrderPosition WHERE orderId == :orderId")
     abstract fun getOrderPositions(orderId: Long): List<OrderPosition>
+
+    @Query("SELECT * FROM OrderPosition")
+    abstract fun getAllOrderPositions(): List<OrderPosition>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertOrder(order: Order): Long

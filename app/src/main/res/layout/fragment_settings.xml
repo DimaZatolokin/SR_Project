@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.srproject.presentation.settings.SettingsViewModel" />
+
+        <variable
+            name="listener"
+            type="com.srproject.presentation.settings.SettingsActionListener" />
+
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="8dp">
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvSync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> listener.onSyncClick()}"
+            android:text="@string/keep_data_remote"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressSync"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:visibility="@{viewModel.progress}"
+            app:layout_constraintBottom_toBottomOf="@id/tvSync"
+            app:layout_constraintStart_toEndOf="@id/tvSync"
+            app:layout_constraintTop_toTopOf="@id/tvSync" />
+
+        <ImageView
+            android:id="@+id/imgSuccess"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_done_green"
+            android:visibility="@{viewModel.success}"
+            app:layout_constraintBottom_toBottomOf="@id/tvSync"
+            app:layout_constraintStart_toEndOf="@id/tvSync"
+            app:layout_constraintTop_toTopOf="@id/tvSync" />
+
+        <View
+            android:id="@+id/viewFirstSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/tvSync" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

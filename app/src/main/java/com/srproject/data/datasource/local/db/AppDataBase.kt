@@ -1,4 +1,4 @@
-package com.srproject.data
+package com.srproject.data.datasource.local.db
 
 import android.content.Context
 import androidx.room.Database
@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.srproject.data.dao.OrdersDao
-import com.srproject.data.dao.ProductsDao
+import com.srproject.data.datasource.local.db.dao.OrdersDao
+import com.srproject.data.datasource.local.db.dao.ProductsDao
 import com.srproject.data.models.Order
 import com.srproject.data.models.OrderPosition
 import com.srproject.data.models.Product
@@ -22,8 +22,10 @@ abstract class AppDataBase : RoomDatabase() {
         fun getInstance(
             context: Context
         ): AppDataBase {
-            return INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(
+            return INSTANCE
+                ?: synchronized(this) {
+                INSTANCE
+                    ?: Room.databaseBuilder(
                     context,
                     AppDataBase::class.java,
                     "database-app"

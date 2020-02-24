@@ -1,4 +1,4 @@
-package com.srproject.data
+package com.srproject.data.datasource.local.prefs
 
 import android.content.Context
 

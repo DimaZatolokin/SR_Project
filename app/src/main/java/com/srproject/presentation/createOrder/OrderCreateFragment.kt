@@ -1,6 +1,7 @@
 package com.srproject.presentation.createOrder
 
 import android.app.DatePickerDialog
+import android.os.Handler
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -10,7 +11,10 @@ import com.srproject.common.obtainViewModel
 import com.srproject.common.toTimeStamp
 import com.srproject.databinding.FragmentOrderCreateBinding
 import com.srproject.presentation.BaseFragment
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import java.util.*
+
+private const val SET_CURSOR_DELAY = 10L
 
 class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPressedListener,
     OrderCreateActionListener {
@@ -47,6 +51,19 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
                 }
                 Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
             })
+            consumerSelectedCommand.observe(this@OrderCreateFragment, androidx.lifecycle.Observer {
+                hideKeyboard()
+                Handler().postDelayed({
+                    binding.etConsumer.setSelection(binding.etConsumer.text.length)
+                }, SET_CURSOR_DELAY)
+            })
+        }
+    }
+
+    override fun setupViews() {
+        super.setupViews()
+        KeyboardVisibilityEvent.setEventListener(activity) {
+            viewModel.somethingInputting(it)
         }
     }
 
@@ -117,6 +134,10 @@ class OrderCreateFragment : BaseFragment<FragmentOrderCreateBinding>(), OnBackPr
     override fun onAddPositionClick() {
         hideKeyboard()
         viewModel.onAddPositionClicked()
+    }
+
+    override fun onCustomerFocusChange(hasFocus: Boolean) {
+        viewModel.setCustomerFocused(hasFocus)
     }
 
     private inner class DateCreatedSetListener : DatePickerDialog.OnDateSetListener {

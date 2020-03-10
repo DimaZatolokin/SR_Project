@@ -81,4 +81,7 @@ abstract class OrdersDao {
 
     @Query("SELECT COUNT() FROM `Order` WHERE active == 1")
     abstract fun getActiveOrdersAmount(): Int
+
+    @Query("SELECT DISTINCT(consumer) FROM `Order` WHERE consumer LIKE '%' || :nameText || '%' ORDER BY consumer")
+    abstract fun findConsumers(nameText: String): List<String>
 }

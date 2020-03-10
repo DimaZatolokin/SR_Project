@@ -99,9 +99,11 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
                     android:textStyle="italic"
+                    app:onFocusChange="@{(v, hasFocus) -> listener.onCustomerFocusChange(hasFocus)}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvConsumerText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tvConsumerText" />
+                    app:layout_constraintStart_toEndOf="@id/tvConsumerText"
+                    app:onTextChanged="@{()->viewModel.findConsumers()}" />
 
                 <TextView
                     android:id="@+id/tvDateCreateText"
@@ -313,6 +315,18 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@id/tvCommentText"
                     app:layout_constraintTop_toBottomOf="@id/tvCommentText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rwConsumers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adapter="@{viewModel.consumersAdapter}"
+                    android:background="@drawable/bg_find_consumers"
+                    android:visibility="@{viewModel.showConsumersList}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="@id/etConsumer"
+                    app:layout_constraintStart_toStartOf="@id/etConsumer"
+                    app:layout_constraintTop_toBottomOf="@id/etConsumer" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

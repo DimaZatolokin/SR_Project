@@ -1,10 +1,9 @@
 package com.srproject.common
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import com.srproject.R
@@ -145,5 +144,24 @@ fun TextView.setSelectedDate(date: Date) {
     month.getMonthNameRes()?.run {
         text = "${context.getString(this)} $year"
     }
+}
+
+@BindingAdapter("onTextChanged")
+fun EditText.setOnTextChanged(onTextChanged: () -> Unit) {
+    addTextChangedListener(object : TextWatcher {
+
+        override fun afterTextChanged(s: Editable?) {
+            onTextChanged.invoke()
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+        }
+
+    })
 }
 

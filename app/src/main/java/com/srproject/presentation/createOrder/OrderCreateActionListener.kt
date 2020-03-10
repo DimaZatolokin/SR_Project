@@ -9,4 +9,5 @@ interface OrderCreateActionListener {
     fun onDoneClick()
     fun onGivenClick()
     fun onAddPositionClick()
+    fun onCustomerFocusChange(hasFocus: Boolean)
 }

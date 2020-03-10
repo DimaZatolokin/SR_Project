@@ -125,6 +125,10 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().getActiveOrdersAmount()
     }
 
+    fun findConsumers(nameText: String): List<String> {
+        return dbStorage.getOrdersDao().findConsumers(nameText)
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null

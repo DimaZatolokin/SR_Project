@@ -18,7 +18,7 @@ class ConsumersViewModel(application: Application, repository: Repository) :
     val hasItems = ObservableBoolean()
 
     fun start() {
-        getConsumersUseCase.obtainConsumers {
+        getConsumersUseCase.findConsumers {
             adapter.items = it
             hasItems.set(it.isNotEmpty())
         }

@@ -22,6 +22,12 @@ abstract class OrdersDao {
         }
     }
 
+    open fun saveOrderPositions(positions: List<OrderPosition>) {
+        positions.forEach {
+            insertOrderPosition(it)
+        }
+    }
+
     @Query("SELECT * FROM `Order` ORDER BY dateCreated")
     abstract fun getAllOrders(): LiveData<List<Order>>
 

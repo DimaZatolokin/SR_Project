@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="listener"
+            type="com.srproject.presentation.settings.SettingsActionListener" />
+
+        <variable
+            name="viewModel"
+            type="com.srproject.presentation.settings.SettingsViewModel" />
+
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="16dp">
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnSaveDataToFile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClickListener="@{v->listener.onSaveDataToFileClick()}"
+            android:text="@string/btn_save_data"
+            app:layout_constraintEnd_toStartOf="@id/btnRestoreDataFromFile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnRestoreDataFromFile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClickListener="@{v->listener.onRestoreDataFromFileClick()}"
+            android:text="@string/btn_restore_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnSaveDataToFile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

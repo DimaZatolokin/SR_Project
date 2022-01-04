@@ -1,5 +1,7 @@
 package com.srproject.data
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import com.srproject.data.models.Order
 import com.srproject.data.models.OrderPosition
@@ -10,7 +12,8 @@ import kotlinx.coroutines.launch
 
 class Repository private constructor(
     private val dbStorage: AppDataBase,
-    private val preferences: PreferencesDataSource
+    private val preferences: PreferencesDataSource,
+    private val fileDataSource: FileDataSource
 ) : CoroutineScope {
 
     override val coroutineContext = Dispatchers.Default
@@ -51,6 +54,12 @@ class Repository private constructor(
     fun createOrder(order: Order) {
         launch {
             dbStorage.getOrdersDao().saveOrder(order)
+        }
+    }
+
+    fun saveOrderPositions(positions: List<OrderPosition>) {
+        launch {
+            dbStorage.getOrdersDao().saveOrderPositions(positions)
         }
     }
 
@@ -129,16 +138,30 @@ class Repository private constructor(
         return dbStorage.getOrdersDao().findConsumers(nameText)
     }
 
+    suspend fun writeDataToFile(
+        context: Context,
+        orders: List<Order>,
+        orderPositions: List<OrderPosition>,
+        products: List<Product>
+    ) {
+        fileDataSource.writeToFile(context, orders, orderPositions, products)
+    }
+
+    suspend fun readDataFromFile(context: Context, uri: Uri): String? {
+        return fileDataSource.readFromFile(context, uri)
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null
 
         fun init(
             dbStorage: AppDataBase,
-            preferences: PreferencesDataSource
+            preferences: PreferencesDataSource,
+            fileDataSource: FileDataSource
         ) {
             if (INSTANCE == null) {
-                INSTANCE = Repository(dbStorage, preferences)
+                INSTANCE = Repository(dbStorage, preferences, fileDataSource)
             }
         }
 

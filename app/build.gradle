@@ -11,8 +11,8 @@ android {
         applicationId "com.srproject"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.1"
+        versionCode 5
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationVariants.all { variant ->
             variant.outputs.all {
@@ -57,4 +57,5 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.0.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
 }

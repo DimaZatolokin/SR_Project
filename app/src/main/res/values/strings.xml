@@ -86,4 +86,8 @@
     <string name="monthly_orders">Заказов:</string>
     <string name="orders_amount">Всего заказов:</string>
     <string name="active_orders_amount">Активных заказов:</string>
+    <string name="btn_save_data">Сохранить данные в файл</string>
+    <string name="btn_restore_data">Восстановить данные из файла</string>
+    <string name="error_not_empty_data">В приложении уже есть сохраненные данные</string>
+    <string name="error_file_data_load">Не удалось загрузить данные из файла</string>
 </resources>
